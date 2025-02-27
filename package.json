@@ -1,0 +1,37 @@
+{
+  "name": "utcp",
+  "version": "1.0.0",
+  "description": "Universal Text Compression Protocol implementation",
+  "main": "lib/index.js",
+  "bin": {
+    "utcp": "./bin/utcp.js"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc",
+    "lint": "eslint src/**/*.ts",
+    "start": "node ./bin/utcp.js",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "compression",
+    "text",
+    "encoding",
+    "utcp"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "commander": "^11.1.0",
+    "chalk": "^4.1.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.5",
+    "@types/node": "^20.8.6",
+    "eslint": "^8.51.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.2.2"
+  }
+}
