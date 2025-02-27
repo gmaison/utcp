@@ -2,6 +2,15 @@
 
 A Node.js implementation of the Universal Text Compression Protocol for compressing and decompressing text files.
 
+## What's Special About UTCP?
+
+1. **Domain-Specific Compression** - Optimized compression for different file types (code, markup, etc.)
+2. **Structure Recognition** - Identifies and compresses repeated patterns and structures
+3. **Self-Documenting Format** - Includes format descriptions and decompression instructions
+4. **Intelligent Fallback** - Automatically uses original content when compression would be ineffective
+5. **Metadata Preservation** - Retains file information like checksums and line counts
+6. **LLM-Friendly Structure** - Dictionaries and references are useful context for language models
+
 ## Installation
 
 ### Global Installation
@@ -107,11 +116,26 @@ The Universal Text Compression Protocol uses several techniques to compress text
 4. **Structure References**: Identifies repeated structures and references them by ID.
 5. **Structural Compression**: Uses shorthand for indentation and repetition.
 6. **Verification**: Includes checksums to verify integrity.
+7. **Format Description**: Self-documenting instructions for decompression.
+8. **Intelligent Fallback**: Preserves original content when compression is ineffective.
 
 A typical UTCP file looks like:
 
 ```
 <UTCP-v1>
+<FORMAT-DESCRIPTION>
+This file is compressed using the Universal Text Compression Protocol (UTCP).
+UTCP is optimized for text files, especially code and structured text.
+Format organization:
+1. Metadata section: Contains file information (type, size, etc.)
+2. Dictionary sections: Define code replacements for common terms
+   - Global dictionary applies to all content
+   - Domain dictionaries are specific to file types
+3. Reference sections: Define replacements for repeated structures
+4. Compressed content: The main content with applied replacements
+5. Footer: Contains verification checksums
+</FORMAT-DESCRIPTION>
+
 <META:type="js">
 <META:checksum="a1b2c3d4e5f6...">
 <META:size="12345">
@@ -132,7 +156,9 @@ $C2=interface
 { "status": "success", "code": 200 }
 </REF:R1>
 
+<CONTENT>
 // Compressed content here...
+</CONTENT>
 
 <EOF:checksum="f6e5d4c3b2a1...">
 </UTCP-v1>
