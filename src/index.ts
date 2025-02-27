@@ -40,7 +40,11 @@ export function decompressFile(
   
   // Create decompressor and decompress
   const decompressor = new UTCPDecompressor(filePath, content, options);
-  decompressor.decompress();
+  const result = decompressor.decompress();
+  
+  // For debugging
+  console.log(`DEBUG: Decompressed content length: ${result.originalContent.length}`);
+  console.log(`DEBUG: First 50 chars: ${result.originalContent.substring(0, 50)}`);
   
   // Save the decompressed file
   return decompressor.save();
