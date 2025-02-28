@@ -1,0 +1,24 @@
+This is a much longer file with substantial repetitive content to test compression. 
+This content repeats many patterns and phrases to ensure compression can work effectively.
+When text has many repeated elements, compression can identify and optimize them.
+The compression algorithm identifies repeated patterns and assigns shorter codes to them.
+This file repeats content to demonstrate the compression. This file repeats content to demonstrate the compression. This file repeats content to demonstrate the compression.
+The compression should recognize repeated patterns and compress them. The compression should recognize repeated patterns and compress them.
+When patterns repeat, compression gets more efficient. When patterns repeat, compression gets more efficient. When patterns repeat, compression gets more efficient.
+This test has many repetitions of words like 'compression', 'patterns', 'repetition', and 'efficient'.
+The more repetition, the better the compression ratio. The more repetition, the better the compression ratio.
+Repeated words like compression, compression, compression help improve the compression ratio.
+Repeated phrases like 'this is a test' and 'this is a test' also contribute to better compression.
+Longer repeated structures provide even more compression potential in the UTCP format.
+We want to thoroughly test if the format is working correctly for different types of content.
+Compression works best on text files with significant repetition and structure.
+Programming code typically compresses well due to repeated patterns, keywords, and structures.
+This is a simple example to test basic functionality of the compression algorithm.
+JavaScript functions often contain repeated patterns like 'function', 'return', 'const', etc.
+For example: function testFunc() { const value = 'test'; return value; }
+For example: function anotherFunc() { const value = 'test'; return value; }
+For example: function thirdFunc() { const value = 'test'; return value; }
+We have many repeated function patterns that should compress well with our algorithm.
+Compression algorithms identify these patterns and use shorter references for them.
+The UTCP format should be optimized for LLM token consumption while remaining readable to LLMs.
+The goal is to reduce token count while maintaining context understanding for the LLM.

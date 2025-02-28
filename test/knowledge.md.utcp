@@ -1,0 +1,3040 @@
+<UTCP-v1>
+<FORMAT-DESCRIPTION>
+Universal Text Compression Protocol (UTCP) file - LLM Decompression Instructions:
+1. Extract content between <CONTENT>...</CONTENT> tags
+2. Replace all reference markers $REF:X with the content in corresponding <REF:X>...</REF:X> blocks
+3. Process indentation markers: replace ">> text" with increased indent + text, "<< text" with decreased indent + text
+4. Replace dictionary codes with their definitions from <DICT:*> sections (e.g., $G1 with its value from global dictionary)
+  - Global dictionary codes start with $G (e.g., $G1, $G2)
+  - Domain dictionaries use domain-specific prefixes (e.g., $C1 for code)
+  - IMPORTANT: When replacing codes, ensure you match the exact code (e.g., "$G1" not partial matches)
+5. Remove <VERB>...</VERB> tags but keep their content verbatim
+6. Dictionaries and references have already been processed in this file - no further action needed if reading this text
+</FORMAT-DESCRIPTION>
+
+<META:type="md">
+<META:checksum="338520d05fa4a193891029973ffe07b9">
+<META:size="81887">
+<META:lines="2519">
+<META:date="2025-02-27T22:47:21.687Z">
+
+<DICT:global>
+$G1=expenses
+$G2=club_id
+$G3=clubs
+$G4=Manager
+$G5=Admin
+$G6=ClubManager
+$G7=expense
+$G8=TIMESTAMP
+$G9=documents
+$G10=fiscal
+$G11=users
+$G12=Member
+$G13=references
+$G14=members
+$G15=Expense
+$G16=VARCHAR
+$G17=events
+$G18=documentation
+$G19=notifications
+$G20=BIGINT
+$G21=user_id
+$G22=Authentication
+$G23=Endpoint
+$G24=management
+$G25=Primary
+$G26=Index
+$G27=expense_id
+$G28=system
+$G29=parameters
+$G30=donations
+$G31=increment
+$G32=Indexes
+$G33=created_at
+$G34=event_id
+$G35=Response
+$G36=functionality
+$G37=Foreign
+$G38=subscription
+$G39=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+$G40=updated_at
+$G41=member
+$G42=Security
+$G43=vehicles
+$G44=mileage
+$G45=address
+$G46=information
+$G47=DELETE
+$G48=event
+$G49=exp_club_id
+$G50=access
+$G51=multiple
+$G52=PATCH
+$G53=details
+$G54=Authorization
+$G55=validated
+$G56=System
+$G57=evidence
+$G58=reports
+$G59=Description
+$G60=status
+$G61=Fields
+$G62=Unique
+$G63=Endpoints
+$G64=fiscal_power
+$G65=donation
+$G66=password
+$G67=Integration
+$G68=description
+$G69=settings
+$G70=document
+$G71=memb_user_id
+$G72=memb_club_id
+$G73=admin
+$G74=configuration
+$G75=package
+$G76=Platform
+$G77=Database
+$G78=document_id
+$G79=index
+$G80=modification
+$G81=Subscription
+$G82=ClubMembership
+$G83=Request
+$G84=participants
+$G85=managers
+$G86=validation
+$G87=database
+$G88=external
+$G89=vehicle_id
+$G90=Paris
+$G91=performance
+$G92=BOOLEAN
+$G93=INTEGER
+$G94=exp_user_id
+$G95=invitations
+$G96=postal_code
+$G97=ExpenseCategory
+$G98=club_membership
+$G99=Tracking
+$G100=calculations
+$G101=Notification
+$G102=exp_date
+$G103=Optimization
+$G104=invitation
+$G105=compliance
+$G106=Considerations
+$G107=Administrator
+$G108=requests
+$G109=Supabase
+$G110=expense_deadline
+$G111=related
+$G112=kilometers
+$G113=Functionalities
+$G114=Event
+$G115=generation
+$G116=email
+$G117=FiscalParameter
+$G118=ExpenseEvidence
+$G119=single
+$G120=FeedbackMessage
+$G121=unique
+$G122=exp_event_id
+$G123=exp_is_donation
+$G124=CONSTRAINT
+$G125=Architecture
+$G126=Technology
+$G127=Roles
+$G128=Method
+$G129=Update
+$G130=start_date
+$G131=SystemConfiguration
+$G132=registration_number
+$G133=vehicle
+$G134=FiscalDocument
+$G135=DonationRecord
+$G136=security
+$G137=appropriate
+$G138=integration
+$G139=after
+$G140=their
+$G141=token
+$G142=reporting
+$G143=submitted
+$G144=CREATE
+$G145=format
+$G146=longitude
+$G147=participant_count
+$G148=Functional
+$G149=processing
+$G150=audit
+$G151=API_Design
+$G152=first_name
+$G153=Notes
+$G154=premium
+$G155=Content
+$G156=storage
+$G157=summary
+$G158=country
+$G159=architecture
+$G160=features
+$G161=tracking
+$G162=gasoline
+$G163=registration
+$G164=French
+$G165=register
+$G166=Personal
+$G167=Document
+$G168=download
+$G169=specific
+$G170=requirements
+$G171=category
+$G172=notification
+$G173=fprm_fiscal_year
+$G174=SELECT
+$G175=Policy
+$G176=France
+$G177=Marathon
+$G178=end_date
+$G179=latitude
+$G180=event123
+$G181=donation_receipt
+$G182=summaries
+$G183=analytics
+$G184=retention
+$G185=Characteristics
+$G186=memb_is_manager
+$G187=exp_category_id
+$G188=alog_created_at
+$G189=assotrack
+$G190=knowledge
+$G191=calculation
+$G192=Development
+$G193=permissions
+$G194=development
+$G195=evidence_id
+$G196=design
+$G197=Secure
+$G198=implementation
+$G199=message
+$G200=values
+$G201=evt_start_date
+$G202=Fiscal
+$G203=Storage
+$G204=administrators
+$G205=Implementation
+$G206=street
+$G207=Street
+$G208=Analysis
+$G209=purposes
+$G210=Management
+$G211=creation
+$G212=feedback
+$G213=handling
+$G214=roles
+$G215=Additional
+$G216=Compliance
+$G217=location
+$G218=AuditLog
+$G219=nullable
+$G220=exp_amount
+$G221=exp_status
+$G222=limit
+$G223=files
+$G224=Recovery
+$G225=Protection
+$G226=Resource
+$G227=Generate
+$G228=error
+$G229=expense789
+$G230=Notifications
+$G231=subscriptions
+$G232=Configuration
+$G233=communication
+$G234=decompression
+$G235=declarations
+$G236=deadlines
+$G237=capabilities
+$G238=policy
+$G239=verification
+$G240=Google
+$G241=Requirements
+$G242=mobile
+$G243=Automated
+$G244=Schema
+$G245=urol_user_id
+$G246=urol_role_id
+$G247=completed
+$G248=manage
+$G249=Access
+$G250=endpoints
+$G251=AssoTrack
+$G252=parameter
+$G253=Cannot
+$G254=last_name
+$G255=Avenue
+$G256=Project
+$G257=Summary
+$G258=Support
+$G259=reset
+$G260=using
+$G261=based
+$G262=history
+$G263=support
+$G264=OAuth
+$G265=current
+$G266=Vehicle
+$G267=belongs
+$G268=WHERE
+$G269=ALTER
+$G270=TABLE
+$G271=Regular
+$G272=level
+$G273=Layer
+$G274=profile
+$G275=example
+$G276=LICENSE
+$G277=Application
+$G278=evt_club_id
+$G279=Performance
+$G280=application
+$G281=Restrictive
+$G282=enthusiasts
+$G283=document123
+$G284=compression
+$G285=personal
+$G286=platform
+$G287=Password
+$G288=recovery
+$G289=currency
+$G290=required
+$G291=patterns
+$G292=deadline
+$G293=Contains
+$G294=standard
+$G295=approved
+$G296=upcoming
+$G297=FUNCTION
+$G298=subgraph
+$G299=validate
+$G300=Limiting
+$G301=marathon
+$G302=per_page
+$G303=Training
+$G304=file_url
+$G305=Global
+$G306=Tracks
+$G307=types
+$G308=submission
+$G309=limits
+$G310=Audit
+$G311=operations
+$G312=Mobile
+$G313=associated
+$G314=Generating
+$G315=Ensure
+$G316=protection
+$G317=principles
+$G318=Design
+$G319=entity
+$G320=Types
+$G321=evt_id
+$G322=PostgreSQL
+$G323=schema
+$G324=login
+$G325=report
+$G326=config
+$G327=Token
+$G328=vehicle567
+$G329=Annual
+$G330=event_name
+$G331=README
+$G332=15T10
+$G333=amounts
+$G334=payment
+$G335=account
+$G336=control
+$G337=Android
+$G338=changes
+$G339=ecat_id
+$G340=DECIMAL
+$G341=queries
+$G342=pending
+$G343=Testing
+$G344=Purpose
+$G345=Service
+$G346=backups
+$G347=user123
+$G348=club789
+$G349=Cycling
+$G350=license
+$G351=dashboard
+$G352=generated
+$G353=Analytics
+$G354=Reporting
+$G355=Maintains
+$G356=club_name
+$G357=ecat_name
+$G358=practical
+$G359=addresses
+$G360=isolation
+$G361=EXCEPTION
+$G362=resources
+$G363=following
+$G364=Anonymous
+$G365=RateLimit
+$G366=tolls
+$G367=trail
+$G368=Clear
+$G369=Users
+$G370=Clubs
+$G371=Check
+$G372=https
+$G373=Limit
+$G374=05T14
+$G375=01T00
+$G376=30T23
+$G377=generate
+$G378=yearly
+$G379=Backup
+$G380=business
+$G381=policies
+$G382=Complete
+$G383=gender
+$G384=inactive
+$G385=Vehicles
+$G386=exp_id
+$G387=supports
+$G388=Strategy
+$G389=Consider
+$G390=Donation
+$G391=Policies
+$G392=LANGUAGE
+$G393=EXISTS
+$G394=provides
+$G395=balances
+$G396=Features
+$G397=tokens
+$G398=server
+$G399=Proper
+$G400=Create
+$G401=Standard
+$G402=Controls
+$G403=attempts
+$G404=scanning
+$G405=event456
+$G406=amount
+$G407=Managers
+$G408=readme
+$G409=options
+$G410=convert
+$G411=Account
+$G412=showing
+$G413=Payment
+$G414=between
+$G415=Profile
+$G416=logging
+$G417=Privacy
+$G418=manager
+$G419=regular
+$G420=include
+$G421=default
+$G422=through
+$G423=role_id
+$G424=EXTRACT
+$G425=REPLACE
+$G426=RETURNS
+$G427=plpgsql
+$G428=Logging
+$G429=Control
+$G430=Options
+$G431=refresh
+$G432=Refresh
+$G433=Premium
+$G434=content
+$G435=headers
+$G436=Allowed
+$G437=Running
+$G438=contact
+$G439=classic
+$G440=Email
+$G441=usage
+$G442=Multi
+$G443=month
+$G444=about
+$G445=other
+$G446=large
+$G447=CHECK
+$G448=total
+$G449=travel
+$G450=review
+$G451=export
+$G452=Future
+$G453=hosted
+$G454=Points
+$G455=growth
+$G456=Stripe
+$G457=Status
+$G458=active
+$G459=belong
+$G460=veh_id
+$G461=future
+$G462=length
+$G463=fields
+$G464=POLICY
+$G465=RETURN
+$G466=Client
+$G467=Svelte
+$G468=Events
+$G469=Report
+$G470=google
+$G471=forgot
+$G472=Delete
+$G473=minute
+$G474=failed
+$G475=window
+$G476=Action
+$G477=Weekly
+$G478=Travel
+$G479=Admins
+$G480=input
+$G481=entry
+$G482=power
+$G483=Needs
+$G484=Goals
+$G485=which
+$G486=rules
+$G487=rates
+$G488=false
+$G489=JSONB
+$G490=bytes
+$G491=codes
+$G492=Table
+$G493=Level
+$G494=USING
+$G495=BEGIN
+$G496=RAISE
+$G497=Trail
+$G498=oauth
+$G499=phone
+$G500=color
+$G501=utils
+$G502=15T08
+$G503=15T18
+$G504=15T20
+$G505=16T10
+</DICT:global>
+
+<DICT:markup>
+$M1=details
+$M2=summary
+$M3=input
+</DICT:markup>
+
+<REF:R1>
+ Endpoints
+| Endpoint | Member | Manager | Admin | Notes |
+|----------|--------|---------|-------|-------|
+| `
+</REF:R1>
+
+<REF:R2>
+nt | Method | Description | Roles |
+|----------|--------|-------------|-------|
+
+</REF:R2>
+
+<REF:R3>
+ Endpoints
+| Endpoint | Member | Manager | Admin | Notes |
+|----------|--------|---------|-------|--
+</REF:R3>
+
+<REF:R4>
+
+| Endpoint | Member | Manager | Admin | Notes |
+|----------|--------|---------|-------|-------|
+| `
+</REF:R4>
+
+<REF:R5>
+nt | Method | Description | Roles |
+|----------|--------|-------------
+</REF:R5>
+
+<REF:R6>
+d | Description | Roles |
+|----------|--------|-------------|-------|
+
+</REF:R6>
+
+<REF:R7>
+ Endpoints
+| Endpoint | Member | Manager | Admin | Notes |
+|----------|--------|---------|
+</REF:R7>
+
+<REF:R8>
+
+| Endpoint | Member | Manager | Admin | Notes |
+|----------|--------|---------|-------|--
+</REF:R8>
+
+<REF:R9>
+t | Member | Manager | Admin | Notes |
+|----------|--------|---------|-------|-------|
+| `
+</REF:R9>
+
+<REF:R10>
+nt | Method | Description | Roles |
+|----------|--------|---
+</REF:R10>
+
+<REF:R11>
+d | Description | Roles |
+|----------|--------|-------------
+</REF:R11>
+
+<REF:R12>
+ption | Roles |
+|----------|--------|-------------|-------|
+
+</REF:R12>
+
+<REF:R13>
+",
+      "format": "pdf",
+      "status": "completed",
+      "file_url": "https://api.assotrack.com/files/documents/docu
+</REF:R13>
+
+<REF:R14>
+ | ❌ | ✅ | ✅ | Manager: Only own club |
+| `/clubs/{club_id}/
+</REF:R14>
+
+<REF:R15>
+ Endpoints
+| Endpoint | Member | Manager | Admin | Notes |
+|----------|--------|
+</REF:R15>
+
+<REF:R16>
+ Endpoints
+| Endpoint | Member | Manager | Admin | Notes |
+|----------|--------|---------|-------|-------|
+| `/clubs/{cl
+</REF:R16>
+
+<REF:R17>
+
+| Endpoint | Member | Manager | Admin | Notes |
+|----------|--------|---------|
+</REF:R17>
+
+<REF:R18>
+t | Member | Manager | Admin | Notes |
+|----------|--------|---------|-------|--
+</REF:R18>
+
+<REF:R19>
+ | Manager | Admin | Notes |
+|----------|--------|---------|-------|-------|
+| `
+</REF:R19>
+
+<REF:R20>
+s
+| Endpoint | Method | Description | Roles |
+|----------|--------|-------------|-------|
+| `/clubs/{club_id}/
+</REF:R20>
+
+<CONTENT>
+---
+date: 2025-02-27 22:52:23
+---
+>> # $G256 Specifications "Knowledge Base"
+
+This project specifications will help you understand the project $G159 and $G160.
+
+It might not be up to date, always refer to code as source of truth.
+
+---
+File name: $G18/01. $G305 $G148 $G208/01. $G256 functional $G257.md
+Last $G80: 2025-02-25 09:30:39
+---
+
+````md
+# Club $G15 $G99 $G56: $G148 $G208 $G257
+
+## 1. $G256 Theme Identification
+
+### Core Theme
+An $G7 $G161 $G28 for club $G14 that:
+- $G306 $G449-$G111 $G1 ($G112, $G366, $G162, etc.) for $G17
+- Enables club $G85 to $G377 $G7 $G182 per $G41 and per $G48
+- Produces $G378 $G7 $G182 for $G14 with $G409 to $G410 $G1 to $G30
+- Generates $G137 $G10 $G235 for both $G14 and club $G85 regarding $G30 for tax $G209
+
+## 2. Expected Functionality Definition
+
+### User Registration and $G210
+- Club $G85 $G163
+- Club $G14 $G163 (by $G104 from club $G85 only)
+- User $G53 $G480 for both user $G307
+- Car $G53 $G480 for $G14 (especially for $G164 $G10 $G46)
+- $G411 deletion $G36 for all $G11
+
+### Club $G4 $G113
+- $G114 $G211 and $G24
+- Setting $G7 $G308 $G236 for $G17
+- Invitation $G28 to $G165 club $G14
+- Dashboard with KPIs and $G7 $G182 (filtered by $G48 and $G41)
+- Data visualization with filtering $G237
+- $G15 $G86 workflow with $G212 mechanism
+- Club $G41 $G24 (inactivate/delete accounts)
+- On-demand $G10 $G142 $G115 $G412 $G65 $G333 per $G41
+- $G230 when club $G14 add $G1
+- $G81 to $G154 plan with $G334 $G28 for additional $G160
+
+### Club $G12 $G113
+- $G15 $G481 per $G48 (labeled $G1 or $G112 driven with $G285 $G133)
+- $G15 categorization ($G366, $G162, $G112, etc.)
+- $G166 $G351 $G412 $G378 $G7 $G450 (with global and per-$G48 views)
+- $G167 $G168 $G36 for $G65 confirmations and $G10 $G235
+
+### $G76 $G107 $G113
+- Dashboard $G412:
+>> - Number of $G3 and $G11 per club
+  - Revenue $G352 from $G231
+  - Overall $G1 handled by the $G286
+- Club and club user $G24
+- $G56 $G232:
+  - $G305 $G28 $G69 $G24
+  - Tax $G191 $G29 $G74
+  - $G56-wide $G309 and thresholds
+- $G155 $G210:
+  - Terms of service, privacy $G238, and help $G18 editing
+  - $G440 template $G24
+  - FAQ $G211 and updates
+- $G258 Functions:
+  - $G258 ticket $G24
+  - Override $G237 for dispute resolution
+  - $G287 $G259 and $G335 $G288
+- $G353 & $G354:
+  - $G76-wide $G441 $G183
+  - Data $G451 for $G105 and auditing
+  - $G56 $G91 monitoring
+- $G42 $G210:
+  - $G42 log $G450
+  - IP blocking and $G50 $G336
+  - Club $G239 processes
+- Financial Administration:
+  - $G413 processor $G138 $G24
+  - $G81 billing issue $G213
+  - Refund $G149
+<< ### $G56 $G113
+- Mileage $G191 $G260 $G164 government's grid ($G261 on $G133 $G482)
+- CSV $G451 for $G48 or club $G41 $G1
+- $G310 $G367/$G262 of all $G7-$G111 activities
+- $G379/$G288 $G28 for $G10 $G9
+
+### $G452 $G106
+- Approval workflows
+- Bulk $G311
+- $G442-$G289 $G263
+
+## 3. $G277 Scope and $G76 Specification
+
+### Web $G76
+- Cloud-$G453 solution
+- Accessible to all user $G307 (club $G85, club $G14, $G286 administrator)
+- Full $G36 for all user $G214
+- Responsive $G196
+
+### $G312 Applications
+- Available for both $G337 and iOS platforms
+- Published on respective app stores ($G240 Play and Apple App Store)
+- Camera $G36 for:
+>> - Taking pictures of receipts as $G7 $G57
+  - Capturing odometer readings to $G70 $G133 $G44
+- $G25 focus on club $G41 $G36, specifically $G7 $G480
+- Online-only $G36 (no offline $G50 $G290)
+- Connected to the cloud-$G453 $G87 for real-time data synchronization
+<< ### Cross-$G76 $G241
+- $G22 methods:
+>> - Username/$G66
+  - $G240 $G264
+- REST API for $G233 $G414 applications and $G87
+- Push $G19 for $G242 $G11
+- Data $G184 $G238: 5 years minimum
+- No $G169 accessibility $G105 $G170
+<< ## 4. User Profiles and Persona $G192
+
+### Club $G12
+**$G415 $G185:**
+- Comfortable with basic $G242 app $G441
+- $G483 simple, intuitive interfaces
+- Typically $G161 $G1 on-the-go during or immediately $G139 $G17
+- Uses the $G28 approximately weekly ($G261 on $G48 frequency)
+
+**Key Pain $G454:**
+- Difficulty remembering to track $G112 driven to/from $G17
+- No $G265 reminders or easy way to log $G449 $G1
+- Manual $G100 of distances and costs
+- Cumbersome process to submit $G1 to club $G85
+
+**$G25 $G484:**
+- Quick and easy $G7 $G416, especially for $G44
+- Minimal administrative burden
+- $G368 visibility into potential tax benefits
+- Simple $G50 to $G290 $G18
+
+### Club $G4
+**$G415 $G185:**
+- Basic to moderate technical proficiency
+- Uses the $G28 sporadically, often at $G443-end
+- Manages $G51 $G17 (approximately weekly) and $G313 $G1
+- $G483 both $G242 and desktop $G36
+
+**Key Pain $G454:**
+- Collecting complete $G7 $G46 from $G51 club $G14
+- $G314 $G65 $G18 from $G143 $G1
+- Creating and managing $G10 $G9 for tax authorities
+- $G99 $G485 $G14 have $G143 $G1 for $G485 $G17
+
+**$G25 $G484:**
+- Streamlined $G7 collection and $G86
+- $G243 $G115 of $G65 and $G10 $G9
+- $G368 overview of club finances and $G41 participation
+- Simplified $G142 for tax $G105
+
+### $G76 $G107
+**$G415 $G185:**
+- Higher technical proficiency
+- Administrative focus on $G28 $G24 and oversight
+- $G483 comprehensive dashboards and $G336 $G237
+
+**Key Pain $G454:**
+- Managing $G51 $G3 with varying needs
+- Ensuring $G28 reliability and $G91
+- $G99 $G380 metrics and $G38 revenue
+
+**$G25 $G484:**
+- Maintain $G286 integrity
+- Monitor $G380 $G455 and $G441 $G291
+- Provide necessary $G263 to $G3 and $G14
+- $G315 regulatory $G105
+
+## 5. $G215 $G106
+
+### Data $G417 & $G216
+- GDPR $G105 for $G213 $G285 and financial $G46
+- $G164-$G169 data $G316 $G170
+- $G197 $G156 of sensitive financial $G46
+- $G368 user consent mechanisms for data $G149
+- Data minimization $G317 $G198
+- Transparency in data $G441 $G381
+
+### Localization
+- $G25 language $G263 for $G164
+- $G164 $G10 regulation $G105
+- $G164 tax $G70 formatting
+- Adaptation to $G164 $G44 reimbursement $G100
+
+### Error Handling & Edge Cases
+- Flexible $G292 $G213 ($G236 serve as $G46 only)
+- $G368 $G233 mechanism for rejected $G1
+- Club $G418 $G212 $G28 for $G7 rejections
+
+### $G67 $G241
+- $G67 with mapping services for $G44 $G239
+- $G456 $G334 gateway $G138 for $G38 $G24
+
+### $G452 $G106
+- Detailed $G142 and $G183 $G170 to be specified later
+- $G215 $G334 gateway $G409 beyond $G456
+- Potential integrations with accounting software
+````
+
+---
+File name: $G18/01. $G305 $G148 $G208/03. $G77 $G244 $G318.md
+Last $G80: 2025-02-26 09:22:21
+---
+
+````md
+# Club $G15 $G99 $G56 - $G382 $G77 $G244 $G318
+
+## 1. Conceptual Model
+
+### Core Entities
+
+1. **User**
+>> - Base $G319 for all $G11 in the $G28
+   - $G293 common attributes: $G383, first name, last name, $G116, postal $G45
+   - Timestamps for $G211 and updates
+   - $G22 $G46
+<< 2. **Role**
+>> - Defines $G193 in the $G28
+   - $G320: $G76 $G107, Club $G4, Club $G12
+<< 3. **Club**
+>> - Organization $G319 that groups $G14
+   - Basic $G46 $G444 the club
+   - $G232 $G69
+   - $G81 $G60 ($G154/$G294)
+<< 4. **$G82**
+>> - Junction $G319 connecting $G369 to $G370
+   - Defines role within the club ($G418 or $G419 $G41)
+   - $G457 of membership ($G458/$G384)
+<< 5. **$G266**
+>> - Belongs to a user
+   - $G293 $G163, $G482 rating, manufacturer $G53
+   - Used for $G44 $G7 $G100
+<< 6. **$G114**
+>> - Organized by a club
+   - Has date, $G217, $G68
+   - $G15 $G308 $G292
+<< 7. **$G15**
+>> - Submitted by club $G14 for $G17
+   - Different $G7 $G307 ($G44, $G366, $G162, etc.)
+   - Amount, $G289 (Euro), $G68
+   - $G457 ($G143, $G295, converted to $G65)
+<< 8. **$G97**
+>> - $G320 of $G1 ($G44, $G366, $G162, etc.)
+   - Associated $G486 or $G100
+<< 9. **$G117**
+>> - Yearly $G29 for $G100
+   - Mileage $G487 $G261 on $G133 $G482
+   - Tax-$G111 $G29
+<< 10. **$G134**
+>> - Generated tax $G9
+    - References to $G111 $G1 and $G14
+    - $G167 type and $G10 year
+<< 11. **$G101**
+>> - $G56 $G19
+    - Type, $G199, $G60
+    - Target user(s)
+<< 12. **$G218**
+>> - $G306 $G338 to critical data
+    - Records user, timestamp, and nature of $G338
+<< 13. **$G81**
+>> - $G306 $G154 $G231 for $G3
+   - Includes $G334 $G262, plan $G53, and expiration dates
+   - Provides historical record of $G38 $G338
+<< 14. **$G135**
+>> - $G306 when $G1 are converted to $G30
+   - $G355 $G262 of $G65 conversions for tax $G209
+   - Could $G420 $G65 certificates and acknowledgments
+<< 15. **$G131**
+>> - Stores global $G28 $G29
+   - $G293 $G421 $G200 and $G28-wide $G69
+   - Centralizes $G74 $G24
+<< 16. **$G118**
+>> - Stores links to receipt images and $G445 supporting $G9
+   - $G355 proof of $G1 for $G150 $G209
+   - Multiple pieces of $G57 could be attached to a $G119 $G7
+<< 17. **$G120**
+>> - $G306 $G233 $G414 club $G85 and $G14 $G444 $G1
+   - Records reasons for rejection or $G108 for additional $G46
+   - $G355 a conversation $G262 $G444 $G7 submissions
+<< ### Entity Relationships
+
+1. **User to Role**
+>> - Many-to-many $G422 UserRole
+   - A user can have $G51 $G214
+<< 2. **User to Club**
+>> - Many-to-many $G422 $G82
+   - A user can be a $G41 of $G51 $G3
+   - A club has $G51 $G14
+<< 3. **User to $G266**
+>> - One-to-many: A user can $G165 $G51 $G43
+   - $G385 $G459 to a $G119 user
+<< 4. **Club to $G114**
+>> - One-to-many: A club organizes $G51 $G17
+   - An $G48 $G267 to a $G119 club
+<< 5. **$G114 to $G15**
+>> - One-to-many: An $G48 has $G51 $G1
+   - An $G7 is $G313 with a $G119 $G48
+<< 6. **User to $G15**
+>> - One-to-many: A user submits $G51 $G1
+   - An $G7 is $G143 by a $G119 user
+<< 7. **$G15 to $G97**
+>> - Many-to-one: Many $G1 can be of the same $G171
+   - Each $G7 has one $G171
+<< 8. **$G117 to $G15 Calculations**
+>> - Used to calculate $G7 $G333, particularly for $G44
+   - Yearly $G29 affect $G100
+<< 9. **Club to $G134**
+>> - One-to-many: A club generates $G51 $G10 $G9
+   - A $G10 $G70 $G267 to a $G119 club
+<< 10. **User to $G101**
+>> - One-to-many: A user receives $G51 $G19
+    - A $G172 targets $G169 user(s)
+<< 11. **$G15 to $G118**
+>> - One-to-many: An $G7 can have $G51 pieces of $G57
+    - Evidence $G267 to a $G119 $G7
+<< 12. **$G15 to $G120**
+>> - One-to-many: An $G7 can have $G51 $G212 messages
+    - Messages are $G313 with a $G119 $G7
+<< 13. **Club to $G81**
+>> - One-to-many: A club can have $G51 $G231 over time
+    - A $G38 $G267 to a $G119 club
+<< 14. **User/Club to $G135**
+>> - A $G65 record connects a user, club, and $G10 year
+    - Summarizes $G30 for tax $G209
+<< ### Conceptual Entity-Relationship Diagram
+
+```
++----------+     +----------------+     +-------+
+|   User   |-----| $G82 |-----|  Club |
++----------+     +----------------+     +-------+
+>> |  |                                    |
+    |  |                                    |
+    |  v                                    v
++----------+                           +--------+
+| $G266  |                           |  $G114 |
++----------+                           +--------+
+>> |
++-------------------+                      |
+| $G117   |                      |
++-------------------+                      v
+<< |                         +-----------+
+          |                         |  $G15  |
+          v                         +-----------+
++------------------+                      |
+| $G97  |<---------------------+
++------------------+                      |
+>> |
+                                          v
++---------------+     +----------------+  |  +-------------------+
+| $G134|<----|    $G218    |  |  |  $G118  |
++---------------+     +----------------+  |  +-------------------+
+                                          |
++-------------+     +----------------+    |
+| $G101 |     | $G135 |<--+
++-------------+     +----------------+    |
+                                          v
++------------------+     +--------------------+
+| $G81     |     |  $G120   |
++------------------+     +--------------------+
+<< +-------------------+
+| $G131 |
++-------------------+
+```
+
+## 2. Logical $G244 $G318
+
+### User
+- **$G61**:
+>> - `$G21` (PK): $G20 (auto-$G31)
+  - `user_uuid`: UUID ($G121) - for $G88 $G13
+  - `user_email`: $G16(255) - $G121
+  - `user_password_hash`: $G16(255)
+  - `user_first_name`: $G16(100)
+  - `user_last_name`: $G16(100)
+  - `user_gender`: CHAR(1) - 'M', 'F', 'O' (Other)
+  - `user_postal_address`: TEXT
+  - `user_phone_number`: $G16(20)
+  - `user_is_active`: $G92
+  - `user_created_at`: $G8
+  - `user_updated_at`: $G8
+- **$G32**:
+  - $G25 Key: `$G21`
+  - $G62 $G26: `user_uuid`
+  - $G62 $G26: `user_email`
+<< ### Role
+- **$G61**:
+>> - `$G423` (PK): $G93 (auto-$G31)
+  - `role_name`: $G16(50) - e.g., 'platform_admin', 'club_manager', 'club_member'
+  - `role_description`: TEXT
+  - `role_created_at`: $G8
+  - `role_updated_at`: $G8
+- **$G32**:
+  - $G25 Key: `$G423`
+  - $G62 $G26: `role_name`
+<< ### UserRole
+- **$G61**:
+>> - `urol_id` (PK): $G20 (auto-$G31)
+  - `$G245` (FK): $G20 - $G13 User($G21)
+  - `$G246` (FK): $G93 - $G13 Role($G423)
+  - `urol_created_at`: $G8
+  - `urol_updated_at`: $G8
+- **$G32**:
+  - $G25 Key: `urol_id`
+  - $G37 Key: `$G245`
+  - $G37 Key: `$G246`
+  - $G62 $G26: `($G245, $G246)`
+<< ### Club
+- **$G61**:
+>> - `$G2` (PK): $G20 (auto-$G31)
+  - `club_uuid`: UUID ($G121) - for $G88 $G13
+  - `$G356`: $G16(255)
+  - `club_description`: TEXT
+  - `club_address`: TEXT
+  - `club_is_active`: $G92
+  - `club_created_at`: $G8
+  - `club_updated_at`: $G8
+- **$G32**:
+  - $G25 Key: `$G2`
+  - $G62 $G26: `club_uuid`
+  - $G26: `$G356`
+<< ### $G81
+- **$G61**:
+>> - `sub_id` (PK): $G20 (auto-$G31)
+  - `sub_uuid`: UUID ($G121) - for $G88 $G13
+  - `sub_club_id` (FK): $G20 - $G13 Club($G2)
+  - `sub_plan_type`: $G16(50) - e.g., '$G294', '$G154'
+  - `sub_start_date`: DATE
+  - `sub_end_date`: DATE
+  - `sub_payment_status`: $G16(50)
+  - `sub_payment_reference`: $G16(255)
+  - `sub_created_at`: $G8
+  - `sub_updated_at`: $G8
+- **$G32**:
+  - $G25 Key: `sub_id`
+  - $G62 $G26: `sub_uuid`
+  - $G37 Key: `sub_club_id`
+  - $G26: `sub_end_date`
+<< ### $G82
+- **$G61**:
+>> - `memb_id` (PK): $G20 (auto-$G31)
+  - `$G71` (FK): $G20 - $G13 User($G21)
+  - `$G72` (FK): $G20 - $G13 Club($G2)
+  - `$G186`: $G92
+  - `memb_join_date`: DATE
+  - `memb_status`: $G16(20) - e.g., '$G458', '$G384'
+  - `memb_created_at`: $G8
+  - `memb_updated_at`: $G8
+- **$G32**:
+  - $G25 Key: `memb_id`
+  - $G37 Key: `$G71`
+  - $G37 Key: `$G72`
+  - $G62 $G26: `($G71, $G72)`
+  - $G26: `memb_status`
+<< ### $G266
+- **$G61**:
+>> - `$G460` (PK): $G20 (auto-$G31)
+  - `veh_uuid`: UUID ($G121) - for $G88 $G13
+  - `veh_user_id` (FK): $G20 - $G13 User($G21)
+  - `veh_registration`: $G16(20)
+  - `veh_manufacturer`: $G16(100)
+  - `veh_model`: $G16(100)
+  - `veh_power_rating`: $G93
+  - `veh_year`: $G93
+  - `veh_is_active`: $G92
+  - `veh_created_at`: $G8
+  - `veh_updated_at`: $G8
+- **$G32**:
+  - $G25 Key: `$G460`
+  - $G62 $G26: `veh_uuid`
+  - $G37 Key: `veh_user_id`
+  - $G62 $G26: `veh_registration`
+<< ### $G114
+- **$G61**:
+>> - `$G321` (PK): $G20 (auto-$G31)
+  - `evt_uuid`: UUID ($G121) - for $G88 $G13
+  - `$G278` (FK): $G20 - $G13 Club($G2)
+  - `evt_name`: $G16(255)
+  - `evt_description`: TEXT
+  - `evt_location`: TEXT
+  - `$G201`: $G8
+  - `evt_end_date`: $G8
+  - `evt_expense_deadline`: $G8
+  - `evt_status`: $G16(20) - e.g., '$G296', '$G458', '$G247'
+  - `evt_created_at`: $G8
+  - `evt_updated_at`: $G8
+- **$G32**:
+  - $G25 Key: `$G321`
+  - $G62 $G26: `evt_uuid`
+  - $G37 Key: `$G278`
+  - $G26: `$G201`
+  - $G26: `evt_status`
+<< ### $G97
+- **$G61**:
+>> - `$G339` (PK): $G93 (auto-$G31)
+  - `$G357`: $G16(100) - e.g., '$G44', 'toll', '$G162'
+  - `ecat_description`: TEXT
+  - `ecat_requires_receipt`: $G92
+  - `ecat_is_active`: $G92
+  - `ecat_created_at`: $G8
+  - `ecat_updated_at`: $G8
+- **$G32**:
+  - $G25 Key: `$G339`
+  - $G62 $G26: `$G357`
+<< ### $G117
+- **$G61**:
+>> - `fprm_id` (PK): $G20 (auto-$G31)
+  - `$G173`: $G93
+  - `fprm_name`: $G16(100)
+  - `fprm_value`: TEXT - JSON to store complex $G29 like $G44 $G487
+  - `fprm_effective_from`: DATE
+  - `fprm_effective_to`: DATE
+  - `fprm_created_at`: $G8
+  - `fprm_updated_at`: $G8
+- **$G32**:
+  - $G25 Key: `fprm_id`
+  - $G62 $G26: `($G173, fprm_name)`
+  - $G26: `$G173`
+<< ### $G15
+- **$G61**:
+>> - `$G386` (PK): $G20 (auto-$G31)
+  - `exp_uuid`: UUID ($G121) - for $G88 $G13
+  - `$G94` (FK): $G20 - $G13 User($G21)
+  - `$G49` (FK): $G20 - $G13 Club($G2)
+  - `$G122` (FK): $G20 - $G13 $G114($G321)
+  - `$G187` (FK): $G93 - $G13 $G97($G339)
+  - `exp_vehicle_id` (FK): $G20 - $G13 $G266($G460), $G219
+  - `$G220`: $G340(10,2)
+  - `exp_currency`: $G16(3) - $G421 'EUR'
+  - `exp_description`: TEXT
+  - `$G102`: DATE
+  - `$G221`: $G16(20) - e.g., 'draft', '$G143', '$G295', 'rejected'
+  - `$G123`: $G92 - $G421 $G488
+  - `exp_kilometers`: $G340(10,2) - $G219, for $G44 $G1
+  - `exp_created_at`: $G8
+  - `exp_updated_at`: $G8
+- **$G32**:
+  - $G25 Key: `$G386`
+  - $G62 $G26: `exp_uuid`
+  - $G37 Key: `$G94`
+  - $G37 Key: `$G49`
+  - $G37 Key: `$G122`
+  - $G37 Key: `$G187`
+  - $G37 Key: `exp_vehicle_id`
+  - $G26: `$G102`
+  - $G26: `$G221`
+  - $G26: `$G123`
+<< ### $G118
+- **$G61**:
+>> - `evid_id` (PK): $G20 (auto-$G31)
+  - `evid_expense_id` (FK): $G20 - $G13 $G15($G386)
+  - `evid_file_path`: $G16(255)
+  - `evid_file_type`: $G16(50)
+  - `evid_upload_date`: $G8
+  - `evid_description`: TEXT
+  - `evid_created_at`: $G8
+  - `evid_updated_at`: $G8
+- **$G32**:
+  - $G25 Key: `evid_id`
+  - $G37 Key: `evid_expense_id`
+<< ### $G135
+- **$G61**:
+>> - `don_id` (PK): $G20 (auto-$G31)
+  - `don_uuid`: UUID ($G121) - for $G88 $G13
+  - `don_user_id` (FK): $G20 - $G13 User($G21)
+  - `don_club_id` (FK): $G20 - $G13 Club($G2)
+  - `don_fiscal_year`: $G93
+  - `don_total_amount`: $G340(10,2)
+  - `don_certificate_number`: $G16(100)
+  - `don_issue_date`: DATE
+  - `don_status`: $G16(20)
+  - `don_created_at`: $G8
+  - `don_updated_at`: $G8
+- **$G32**:
+  - $G25 Key: `don_id`
+  - $G62 $G26: `don_uuid`
+  - $G37 Key: `don_user_id`
+  - $G37 Key: `don_club_id`
+  - $G26: `don_fiscal_year`
+  - $G62 $G26: `don_certificate_number`
+<< ### $G134
+- **$G61**:
+>> - `fdoc_id` (PK): $G20 (auto-$G31)
+  - `fdoc_uuid`: UUID ($G121) - for $G88 $G13
+  - `fdoc_club_id` (FK): $G20 - $G13 Club($G2)
+  - `fdoc_type`: $G16(50) - e.g., 'donation_certificate', 'tax_report'
+  - `fdoc_fiscal_year`: $G93
+  - `fdoc_file_path`: $G16(255)
+  - `fdoc_generation_date`: $G8
+  - `fdoc_status`: $G16(20)
+  - `fdoc_created_at`: $G8
+  - `fdoc_updated_at`: $G8
+- **$G32**:
+  - $G25 Key: `fdoc_id`
+  - $G62 $G26: `fdoc_uuid`
+  - $G37 Key: `fdoc_club_id`
+  - $G26: `fdoc_fiscal_year`
+  - $G26: `fdoc_type`
+<< ### $G120
+- **$G61**:
+>> - `fmsg_id` (PK): $G20 (auto-$G31)
+  - `fmsg_expense_id` (FK): $G20 - $G13 $G15($G386)
+  - `fmsg_sender_id` (FK): $G20 - $G13 User($G21)
+  - `fmsg_message`: TEXT
+  - `fmsg_is_read`: $G92
+  - `fmsg_created_at`: $G8
+  - `fmsg_updated_at`: $G8
+- **$G32**:
+  - $G25 Key: `fmsg_id`
+  - $G37 Key: `fmsg_expense_id`
+  - $G37 Key: `fmsg_sender_id`
+  - $G26: `fmsg_created_at`
+<< ### $G101
+- **$G61**:
+>> - `notf_id` (PK): $G20 (auto-$G31)
+  - `notf_user_id` (FK): $G20 - $G13 User($G21)
+  - `notf_type`: $G16(50) - e.g., 'expense_submitted', 'subscription_renewed'
+  - `notf_title`: $G16(255)
+  - `notf_message`: TEXT
+  - `notf_is_read`: $G92
+  - `notf_created_at`: $G8
+  - `notf_updated_at`: $G8
+- **$G32**:
+  - $G25 Key: `notf_id`
+  - $G37 Key: `notf_user_id`
+  - $G26: `notf_type`
+  - $G26: `notf_is_read`
+  - $G26: `notf_created_at`
+<< ### $G131
+- **$G61**:
+>> - `conf_id` (PK): $G93 (auto-$G31)
+  - `conf_key`: $G16(100)
+  - `conf_value`: TEXT
+  - `conf_description`: TEXT
+  - `conf_created_at`: $G8
+  - `conf_updated_at`: $G8
+- **$G32**:
+  - $G25 Key: `conf_id`
+  - $G62 $G26: `conf_key`
+<< ### $G218
+- **$G61**:
+>> - `alog_id` (PK): $G20 (auto-$G31)
+  - `alog_user_id` (FK): $G20 - $G13 User($G21), $G219
+  - `alog_entity_type`: $G16(50) - e.g., 'user', '$G7', 'club'
+  - `alog_entity_id`: $G16(36)
+  - `alog_action`: $G16(20) - e.g., 'create', 'update', 'delete'
+  - `alog_previous_state`: $G489 - $G219
+  - `alog_new_state`: $G489 - $G219
+  - `alog_ip_address`: $G16(45)
+  - `alog_user_agent`: TEXT
+  - `$G188`: $G8
+- **$G32**:
+  - $G25 Key: `alog_id`
+  - $G37 Key: `alog_user_id`
+  - $G26: `alog_entity_type`
+  - $G26: `alog_entity_id`
+  - $G26: `alog_action`
+  - $G26: `$G188`
+<< ## 3. Physical $G244 $G103
+
+### Data Type $G103
+
+#### Integer $G320
+- Use `SERIAL` or `BIGSERIAL` for auto-incrementing primary keys
+- `INT` for $G294 integer $G200 (4 $G490)
+- `$G20` for larger integer $G200 or when $G461 $G455 is expected (8 $G490)
+- Use `SMALLINT` (2 $G490) for limited-range integers like ratings or $G60 $G491
+
+#### Text $G320
+- `$G16(n)` for variable-$G462 strings with a reasonable maximum $G462
+- `TEXT` for longer strings with no $G358 $G222
+- `CHAR(1)` for $G119-character $G491 (like $G383)
+- `CITEXT` (case-insensitive text) for $G116 $G359 and usernames
+
+#### Date and Time $G320
+- `$G8 WITH TIME ZONE` for $G33/$G40 $G463 to handle timezone issues
+- `DATE` for date-only $G200 (without time component)
+
+#### Boolean Type
+- `$G92` for true/$G488 flags
+
+#### Numeric $G320
+- `$G340(10,2)` for $G289 $G333 ($G387 exactly 8 digits before decimal, 2 $G139)
+- `NUMERIC(10,2)` for $G112 and $G445 precise measurements
+
+#### UUID Type
+- Native `UUID` type for universally $G121 identifiers
+
+### Indexing $G388
+
+#### $G25 Key $G32
+- All tables have BIGSERIAL or SERIAL primary keys $G485 are automatically indexed
+
+#### $G37 Key $G32
+- All foreign key columns should be indexed to improve join $G91
+
+#### $G62 $G32
+- UUID $G463 for $G88 $G13
+- $G440 $G359
+- Registration numbers
+- Certificate numbers
+
+#### Compound $G32
+- For frequently combined search criteria:
+>> - `($G71, $G72)` on $G82
+  - `($G49, $G102)` on $G15 for club $G58
+  - `($G94, $G102)` on $G15 for user $G58
+  - `($G122, $G221)` on $G15 for $G48 $G157 $G58
+<< #### Partial $G32
+- For $G341 that filter on $G169 statuses:
+>> - `$G221 = '$G143'` for $G342 $G1 $G450
+  - `$G123 = true` for $G65 $G58
+<< #### Search $G103
+- $G389 GIN indexes for $G489 columns in $G218
+- $G389 adding a trigram $G79 for text search on names and descriptions
+
+### $G492 Partitioning
+
+#### $G15 $G492
+- Partition by `$G49` to isolate club data
+- Alternatively, partition by date range (e.g., by $G10 year) for historical data
+
+#### $G218 $G492
+- Partition by `$G188` date ranges for efficient archiving
+- Improves $G91 for $G446 $G150 trails
+
+### Materialized Views
+
+#### Club $G15 Summaries
+```sql
+$G144 MATERIALIZED VIEW club_expense_summary AS
+$G174 
+>> $G49,
+    DATE_TRUNC('$G443', $G102) AS $G443,
+    SUM($G220) AS total_amount,
+    COUNT(*) AS expense_count
+FROM $G7
+GROUP BY $G49, DATE_TRUNC('$G443', $G102);
+```
+<< #### $G12 $G390 Summaries
+```sql
+$G144 MATERIALIZED VIEW member_donation_summary AS
+$G174 
+>> $G94,
+    $G49,
+    $G424(YEAR FROM $G102) AS fiscal_year,
+    SUM($G220) AS donation_amount,
+    COUNT(*) AS donation_count
+FROM $G7
+$G268 $G123 = true
+GROUP BY $G94, $G49, $G424(YEAR FROM $G102);
+```
+<< ### Constraint Definitions
+
+#### $G371 Constraints
+```sql
+-- $G315 positive $G7 $G333
+$G269 $G270 $G7 ADD $G124 positive_amount $G447 ($G220 > 0);
+
+-- $G315 $G48 end date is $G139 start date
+$G269 $G270 $G48 ADD $G124 valid_event_dates $G447 (evt_end_date > $G201);
+
+-- $G315 $G7 date is not in the $G461
+$G269 $G270 $G7 ADD $G124 valid_expense_date $G447 ($G102 <= CURRENT_DATE);
+
+-- $G315 $G44 is positive for $G44 $G1
+$G269 $G270 $G7 ADD $G124 valid_mileage 
+>> $G447 ($G187 != ($G174 $G339 FROM expense_category $G268 $G357 = '$G44') OR exp_kilometers > 0);
+```
+<< #### $G37 Key Constraints
+```sql
+-- Example for $G82 table
+$G269 $G270 $G98 
+>> ADD $G124 fk_memb_user 
+    FOREIGN KEY ($G71) 
+    REFERENCES user($G21) 
+    ON $G47 RESTRICT;
+<< $G269 $G270 $G98 
+>> ADD $G124 fk_memb_club 
+    FOREIGN KEY ($G72) 
+    REFERENCES club($G2) 
+    ON $G47 CASCADE;
+```
+<< ### Row-$G493 $G42 $G391
+
+Since we're $G260 $G109, we can leverage $G322's Row-$G493 $G42 (RLS) to enforce data $G360:
+
+```sql
+-- Enable RLS on $G7 table
+$G269 $G270 $G7 ENABLE ROW LEVEL SECURITY;
+
+-- $G175 for club $G85 to see all $G1 in $G140 club
+$G144 $G464 club_manager_expense_policy ON $G7
+>> $G494 (
+>> $G49 IN (
+>> $G174 $G72 
+            FROM $G98 
+            $G268 $G71 = current_user_id() 
+            AND $G186 = true
+<< )
+<< );
+<< -- $G175 for $G14 to see only $G140 own $G1
+$G144 $G464 member_expense_policy ON $G7
+>> $G494 ($G94 = current_user_id());
+<< -- $G175 for $G286 admins to see all $G1
+$G144 $G464 admin_expense_policy ON $G7
+>> $G494 (
+>> current_user_has_role('platform_admin')
+<< );
+```
+<< ### $G77 Functions
+
+#### $G202 Year Calculation
+```sql
+$G144 OR $G425 $G297 get_fiscal_year(expense_date DATE) 
+$G426 $G93 AS $$
+$G495
+>> -- In $G176, $G10 year is the calendar year
+    $G465 $G424(YEAR FROM expense_date);
+END;
+$$ $G392 $G427;
+```
+<< #### Club $G4 $G371
+```sql
+$G144 OR $G425 $G297 is_club_manager($G21 $G20, $G2 $G20) 
+$G426 $G92 AS $$
+$G495
+>> $G465 $G393 (
+>> $G174 1 
+        FROM $G98 
+        $G268 $G71 = $G21 
+        AND $G72 = $G2 
+        AND $G186 = true
+<< );
+END;
+$$ $G392 $G427;
+```
+<< #### $G15 Validation
+```sql
+$G144 OR $G425 $G297 validate_expense() 
+$G426 TRIGGER AS $$
+$G495
+>> -- $G371 if user is a $G41 of the club
+    IF NOT $G393 (
+>> $G174 1 
+        FROM $G98 
+        $G268 $G71 = NEW.$G94 
+        AND $G72 = NEW.$G49
+<< ) THEN
+>> $G496 $G361 'User is not a $G41 of this club';
+<< END IF;
+>> -- $G371 if $G48 $G267 to the club
+<< IF NOT $G393 (
+>> $G174 1 
+        FROM $G48 
+        $G268 $G321 = NEW.$G122 
+        AND $G278 = NEW.$G49
+<< ) THEN
+>> $G496 $G361 '$G114 does not $G459 to this club';
+<< END IF;
+>> -- $G371 if $G7 $G292 has passed
+<< IF $G393 (
+>> $G174 1 
+        FROM $G48 
+        $G268 $G321 = NEW.$G122 
+        AND evt_expense_deadline < CURRENT_TIMESTAMP
+<< ) THEN
+>> $G496 $G361 '$G15 $G292 has passed for this $G48';
+<< END IF;
+>> $G465 NEW;
+END;
+$$ $G392 $G427;
+<< $G144 TRIGGER expense_validation_trigger
+BEFORE INSERT OR UPDATE ON $G7
+FOR EACH ROW EXECUTE $G297 validate_expense();
+```
+
+### $G279 $G103 for $G109
+
+1. **Connection Pooling**:
+>> - Configure $G137 connection pool sizes in $G109 $G69
+<< 2. **Prepared Statements**:
+>> - Use parameterized $G341 in the $G280 code
+<< 3. **$G109 $G203 $G67**:
+>> - For file $G57 $G156, utilize direct links to $G109 $G203
+   - Store only file $G13 in the $G87, not the $G223 themselves
+<< 4. **RLS $G391**:
+>> - Optimize RLS $G381 to avoid excessive checks
+   - Use simple conditions for better $G91
+<< 5. **PostgREST $G103**:
+>> - Structure the $G323 to work well with PostgREST's automatic API $G115
+   - $G389 $G260 views for complex $G341 that will be exposed via API
+<< ### $G379 and Disaster $G224
+
+1. **Point-in-Time $G224**:
+>> - Enable WAL (Write-Ahead $G428) archiving
+   - Configure $G419 snapshots
+<< 2. **Retention $G175**:
+>> - Implement a backup $G184 $G238 that meets the 5+ year requirement for $G10 data
+<< 3. **$G271 $G343**:
+>> - Schedule $G419 restoration tests to verify backup integrity
+<< ## $G257
+
+This $G87 $G323 $G196 $G394 a comprehensive foundation for the Club $G15 $G99 $G56. It $G387 the core $G36 of $G161 $G1, managing club memberships, generating $G10 $G18, and ensuring data $G360 $G414 $G3.
+
+Key $G160 of the $G196 $G420:
+- Intuitive $G319 relationships that model the $G380 domain
+- $G368 naming conventions with $G319-$G169 prefixes
+- Efficient indexing strategy for common query $G291
+- Row-$G272 $G136 for multi-tenancy data $G360
+- $G279 optimizations for $G142 and $G183
+- $G67 with $G109 for both $G87 and file $G156
+
+The $G323 $G395 normalization $G317 with $G358 $G91 considerations, resulting in a $G196 that is both maintainable and efficient.
+
+````
+
+---
+File name: $G18/01. $G305 $G148 $G208/02. $G56 $G125.md
+Last $G80: 2025-02-25 11:12:00
+---
+
+````md
+# Club $G15 $G99 $G56 - $G125 $G257
+
+## Overview
+
+This $G70 outlines the high-$G272 $G28 $G159 for the Club $G15 $G99 $G56, designed to help $G3 track $G41 $G1, $G377 $G10 $G18 for $G30, and $G248 $G17. The $G159 $G395 $G36 with $G358 $G198 considerations.
+
+## $G56 $G344
+
+The $G28 allows:
+- $G99 $G449-$G111 $G1 ($G112, $G366, $G162) for club $G17
+- $G314 $G7 $G182 per $G41 and per $G48
+- Producing $G378 $G7 $G182 with $G409 to $G410 $G1 to $G30
+- $G314 $G137 $G10 $G235 for tax $G209
+
+## $G125 Diagram
+
+```mermaid
+flowchart TD
+>> $G298 "$G466 $G273"
+>> A1[Web $G277] 
+        A2[$G312 Apps - iOS/$G337]
+<< end
+>> $G298 "Backend $G273"
+>> B[API Server]
+        C[$G22]
+<< end
+>> $G298 "Data $G273"
+>> D1[($G25 $G77)]
+        D2[(File $G203)]
+<< end
+>> $G298 "External Services"
+>> E1[Mapping $G345]
+        E2[$G413 Gateway]
+        E3[$G440 $G345]
+<< end
+>> %% Connections
+<< A1 & A2 --> B
+    B --- C
+    B --> D1 & D2
+    B --> E1 & E2 & E3
+```
+<< ## $G56 Components
+
+### 1. $G466 $G273
+
+#### Web $G277
+- **$G126**: $G467 with SvelteKit
+- **$G396**:
+>> - Responsive $G196 for desktop and $G242 browsers
+  - $G382 $G36 for all user $G214
+  - $G25 interface for club $G85 and $G204
+  - Data visualization for $G7 $G58 and $G183
+  - $G167 $G115 and $G451
+>> #### $G312 Applications
+- **$G126**: $G467 with Capacitor
+- **Platforms**: iOS and $G337
+- **$G396**:
+<< - Focused on club $G41 $G7 $G481
+  - Camera $G138 for receipt capture
+  - Odometer reading $G18
+  - Real-time synchronization with backend
+  - Push $G19 for $G17 and $G236
+<< ### 2. Backend $G273
+
+#### API Server
+- **$G126**: Python with FastAPI
+- **$G125**: Monolithic with internal modularization
+- **Core Modules**:
+>> - Club and $G41 $G24
+  - $G114 $G211 and $G24
+  - $G15 $G161 and $G86
+  - $G202 $G70 $G115
+  - $G354 and $G183
+  - $G101 $G213
+>> #### $G22
+- **$G126**: Built-in authentication $G28 with JWT $G397
+- **Methods**:
+<< - Username/$G66
+  - $G240 $G264
+- **$G396**:
+  - Role-$G261 $G50 $G336 ($G76 $G5, Club $G4, Club $G12)
+  - Invitation-only $G163 for club $G14
+  - Session $G24
+  - $G287 $G259 $G36
+<< ### 3. Data $G273
+
+#### $G25 $G77
+- **$G126**: $G322 $G453 on $G109
+- **$G244 Highlights**:
+>> - $G369 and $G214
+  - $G370 and memberships
+  - $G468 and $G236
+  - $G15 categories and entries
+  - $G385 and $G44 $G487
+  - $G390 $G161
+  - $G310 logs
+  - $G56 $G69
+<< #### File $G203
+- **$G126**: $G109 $G203
+- **$G155**:
+>> - Receipt images
+  - Generated $G10 $G9 (PDFs)
+  - Export $G223 (CSV)
+  - User $G274 pictures
+  - $G56 $G346
+<< ### 4. External Services
+
+#### Mapping $G345
+- **$G344**: Distance $G191 and $G86 for $G44 $G1
+- **$G205**: $G67 with mapping APIs ($G240 Maps, OpenStreetMap)
+
+#### $G413 Gateway
+- **$G344**: Processing $G38 payments for $G154 $G160
+- **$G205**: $G456 $G138
+
+#### $G440 $G345
+- **$G344**: Sending $G19 and $G9
+- **$G205**: SMTP $G398 or third-party $G116 service
+
+## User $G127 and $G249 $G429
+
+### $G76 $G107
+- $G56-wide $G74
+- Club $G24
+- User $G24
+- $G353 $G351
+- $G258 functions
+
+### Club $G4
+- Club $G74
+- $G12 $G104 and $G24
+- $G114 $G211 and $G24
+- $G15 approval
+- $G469 $G115
+- $G202 $G18
+
+### Club $G12
+- $G166 $G274 $G24
+- $G15 $G308
+- $G166 $G351
+- $G167 $G168
+
+## $G42 $G106
+
+- **$G22**: $G197 $G324 with $G66 hashing and $G264
+- **$G54**: Role-$G261 $G50 $G336 for all API $G250
+- **Data $G225**: TLS for all communications
+- **$G417**: GDPR $G105 for $G213 $G285 data
+- **$G310 $G497**: $G428 of all $G7-$G111 activities
+- **$G379**: $G271 $G87 $G346 with 5-year $G184
+
+## Scalability and $G279
+
+- **$G77 $G103**: $G399 indexing and query optimization
+- **Caching $G388**: Cache frequently accessed data
+- **Horizontal Scaling**: Ability to add API servers as load increases
+- **Vertical Scaling**: $G77 $G398 $G362 can be increased
+- **CDN $G67**: For static assets and $G223
+
+## $G192 and Deployment
+
+### $G192 Workflow
+1. $G77 $G323 $G196
+2. Core API $G194
+3. Web interface $G198
+4. $G312 app $G194
+5. $G67 with $G88 services
+6. $G343 and quality assurance
+
+### Deployment $G430
+- Containerized deployment with Docker
+- Cloud hosting (AWS, GCP, Azure)
+- VPS or dedicated $G398 hosting
+- CI/CD pipeline for automated deployment
+
+## $G452 $G106
+
+- **$G442-$G289 $G258**: Expansion beyond Euro for international $G3
+- **Advanced $G353**: More sophisticated $G142 and visualizations
+- **Approval Workflows**: $G442-$G272 approval for $G1
+- **Accounting Software $G67**: Export data to popular accounting systems
+- **Offline Mode**: $G258 for offline $G7 $G481 in $G242 apps
+
+## Conclusion
+
+This $G159 $G394 a pragmatic approach to implementing the Club $G15 $G99 $G56. It $G395 $G36 with $G194 efficiency, while allowing for $G461 $G455 and enhancement. The use of $G467 for the frontend offers $G91 advantages and $G194 speed, while the $G322 $G87 $G394 a solid foundation for data $G24 and $G142.
+
+````
+
+---
+File name: $G18/02. $G151/01. api_endpoints.md
+Last $G80: 2025-02-27 16:06:37
+---
+
+````md
+# $G251 API $G318
+
+## Base URL
+- Production: `$G372://api.$G189.com/v1`
+- $G192: `$G372://dev-api.$G189.com/v1`
+
+## $G22
+All API $G250 use JWT $G141 authentication. Tokens are provided in the $G54 header:
+```
+$G54: Bearer <jwt_token>
+```
+
+$G22 $G250 that don't require an existing $G141:
+- `/auth/$G324`
+- `/auth/$G165` ($G104 only)
+- `/auth/$G498/$G470`
+- `/auth/$G431-$G141`
+- `/auth/$G471-$G66`
+- `/auth/$G259-$G66`
+
+## API $G63 by $G226
+
+### $G22
+| $G23 | $G128 | $G59 | $G127 |
+|----------|--------|-------------|-------|
+| `/auth/$G324` | POST | Authenticate user credentials | Any |
+| `/auth/$G165` | POST | Register new user (requires $G104) | Any |
+| `/auth/$G498/$G470` | POST | Authenticate with $G240 $G264 | Any |
+| `/auth/$G431-$G141` | POST | $G432 JWT $G141 | Any |
+| `/auth/$G471-$G66` | POST | $G83 $G66 $G259 | Any |
+| `/auth/$G259-$G66` | POST | Reset $G66 with $G141 | Any |
+| `/auth/logout` | POST | Invalidate $G141 | Any |
+
+### $G369
+| $G23 | $G128 | $G59 | $G127 |
+|----------|--------|-------------|-------|
+| `/$G11/me` | GET | Get $G265 user $G274 | Any |
+| `/$G11/me` | $G52 | $G129 $G265 user $G274 | Any |
+| `/$G11` | GET | List $G11 (with filters) | $G5 |
+| `/$G11/{$G21}` | GET | Get user $G53 | $G5, $G6 (for $G14) |
+| `/$G11/{$G21}` | $G52 | $G129 user $G53 | $G5 |
+| `/$G11/{$G21}` | $G47 | Mark user as $G384 | $G5 |
+| `/$G11/me/$G43` | GET | List user's $G43 | $G12, $G4, $G5 |
+| `/$G11/me/$G43` | POST | Add new $G133 | $G12, $G4, $G5 |
+| `/$G11/me/$G43/{$G89}` | GET | Get $G133 $G53 | $G12, $G4, $G5 |
+| `/$G11/me/$G43/{$G89}` | $G52 | $G129 $G133 | $G12, $G4, $G5 |
+| `/$G11/me/$G43/{$G89}` | $G47 | $G472 $G133 | $G12, $G4, $G5 |
+
+### $G370
+| $G23 | $G128 | $G59 | $G127 |
+|----------|--------|-------------|-------|
+| `/$G3` | GET | List $G3 (with filters) | $G5 |
+| `/$G3` | POST | $G400 new club | $G5 |
+| `/$G3/{$G2}` | GET | Get club $G53 | $G5, $G6, $G12 (own club) |
+| `/$G3/{$G2}` | $G52 | $G129 club | $G5, $G6 |
+| `/$G3/{$G2}` | $G47 | Deactivate club | $G5 |
+| `/$G3/{$G2}/$G14` | GET | List club $G14 | $G5, $G6 |
+| `/$G3/{$G2}/$G14` | POST | Add $G41 to club | $G5, $G6 |
+| `/$G3/{$G2}/$G14/{$G21}` | GET | Get $G41 $G53 | $G5, $G6 |
+| `/$G3/{$G2}/$G14/{$G21}` | $G52 | $G129 $G41 role | $G5, $G6 |
+| `/$G3/{$G2}/$G14/{$G21}` | $G47 | Remove $G41 from club | $G5, $G6 |
+| `/$G3/{$G2}/$G95` | GET | List $G342 $G95 | $G5, $G6 |
+| `/$G3/{$G2}/$G95` | POST | Send $G104 | $G5, $G6 |
+| `/$G3/{$G2}/$G95/{invitation_id}` | $G47 | Cancel $G104 | $G5, $G6 |
+| `/$G3/{$G2}/$G38` | GET | Get $G38 $G53 | $G5, $G6 |
+| `/$G3/{$G2}/$G38` | POST | $G400/update $G38 | $G5, $G6 |
+
+### $G468
+| $G23 | $G128 | $G59 | $G127 |
+|----------|--------|-------------|-------|
+| `/$G3/{$G2}/$G17` | GET | List club $G17 | $G5, $G6, $G12 |
+| `/$G3/{$G2}/$G17` | POST | $G400 new $G48 | $G5, $G6 |
+| `/$G3/{$G2}/$G17/{$G34}` | GET | Get $G48 $G53 | $G5, $G6, $G12 |
+| `/$G3/{$G2}/$G17/{$G34}` | $G52 | $G129 $G48 | $G5, $G6 |
+| `/$G3/{$G2}/$G17/{$G34}` | $G47 | Cancel $G48 | $G5, $G6 |
+| `/$G3/{$G2}/$G17/{$G34}/$G84` | GET | List $G48 $G84 | $G5, $G6 |
+| `/$G3/{$G2}/$G17/{$G34}/$G84` | POST | Add participant | $G5, $G6 |
+| `/$G3/{$G2}/$G17/{$G34}/$G84/{$G21}` | $G47 | Remove participant | $G5, $G6 |
+
+### Expenses
+| $G23 | $G128 | $G59 | $G127 |
+|----------|--------|-------------|-------|
+| `/$G1` | GET | List all $G1 ($G73 only) | $G5 |
+| `/$G3/{$G2}/$G1` | GET | List club $G1 | $G5, $G6 |
+| `/$G3/{$G2}/$G17/{$G34}/$G1` | GET | List $G48 $G1 | $G5, $G6 |
+| `/$G11/me/$G1` | GET | List own $G1 | $G12, $G4, $G5 |
+| `/$G11/me/$G1` | POST | Submit new $G7 | $G12, $G4, $G5 |
+| `/$G11/me/$G1/{$G27}` | GET | Get $G7 $G53 | $G12 (own), $G4, $G5 |
+| `/$G11/me/$G1/{$G27}` | $G52 | $G129 $G7 | $G12 (own, if not $G55) |
+| `/$G11/me/$G1/{$G27}` | $G47 | $G472 $G7 | $G12 (own, if not $G55) |
+| `/$G3/{$G2}/$G1/{$G27}` | GET | Get $G7 $G53 | $G6, $G5 |
+| `/$G3/{$G2}/$G1/{$G27}/$G299` | POST | Validate/reject $G7 | $G6, $G5 |
+| `/$G1/{$G27}/$G57` | POST | Upload $G57 | $G12 (own), $G4, $G5 |
+| `/$G1/{$G27}/$G57/{$G195}` | GET | Get $G57 | $G12 (own), $G4, $G5 |
+| `/$G1/{$G27}/$G57/{$G195}` | $G47 | $G472 $G57 | $G12 (own, if not $G55), $G4, $G5 |
+
+### $G202 Documents
+| $G23 | $G128 | $G59 | $G127 |
+|----------|--------|-------------|-------|
+| `/$G3/{$G2}/$G10-$G9` | GET | List club $G10 $G9 | $G5, $G6 |
+| `/$G3/{$G2}/$G10-$G9` | POST | $G227 club $G10 $G9 | $G5, $G6 |
+| `/$G3/{$G2}/$G10-$G9/{$G78}` | GET | Get $G70 $G53 | $G5, $G6 |
+| `/$G3/{$G2}/$G10-$G9/{$G78}/$G168` | GET | Download $G70 | $G5, $G6 |
+| `/$G11/me/$G10-$G9` | GET | List own $G10 $G9 | $G12, $G4, $G5 |
+| `/$G11/me/$G10-$G9/{$G78}` | GET | Get $G70 $G53 | $G12 (own), $G4, $G5 |
+| `/$G11/me/$G10-$G9/{$G78}/$G168` | GET | Download $G70 | $G12 (own), $G4, $G5 |
+
+### Donations
+| $G23 | $G128 | $G59 | $G127 |
+|----------|--------|-------------|-------|
+| `/$G3/{$G2}/$G30` | GET | List club $G30 | $G5, $G6 |
+| `/$G3/{$G2}/$G30/$G157` | GET | Get $G65 $G157 | $G5, $G6 |
+| `/$G11/me/$G30` | GET | List own $G30 | $G12, $G4, $G5 |
+| `/$G11/me/$G30/$G157` | GET | Get own $G65 $G157 | $G12, $G4, $G5 |
+
+### Reports
+| $G23 | $G128 | $G59 | $G127 |
+|----------|--------|-------------|-------|
+| `/$G3/{$G2}/$G58/$G1` | GET | $G227 $G7 $G325 | $G5, $G6 |
+| `/$G3/{$G2}/$G58/$G30` | GET | $G227 $G65 $G325 | $G5, $G6 |
+| `/$G3/{$G2}/$G58/$G14` | GET | $G227 $G41 activity $G325 | $G5, $G6 |
+| `/$G3/{$G2}/$G58/$G17` | GET | $G227 $G17 $G325 | $G5, $G6 |
+
+### $G56 Settings ($G5 Only)
+| $G23 | $G128 | $G59 | $G127 |
+|----------|--------|-------------|-------|
+| `/$G73/$G10-$G29` | GET | List $G10 $G29 | $G5 |
+| `/$G73/$G10-$G29` | POST | $G400 $G10 $G252 | $G5 |
+| `/$G73/$G10-$G29/{year}` | GET | Get $G10 $G252 | $G5 |
+| `/$G73/$G10-$G29/{year}` | $G52 | $G129 $G10 $G252 | $G5 |
+| `/$G73/$G28-$G326` | GET | Get $G28 $G74 | $G5 |
+| `/$G73/$G28-$G326` | $G52 | $G129 $G28 $G74 | $G5 |
+| `/$G73/$G150-logs` | GET | View $G150 logs | $G5 |
+
+### $G230
+| $G23 | $G128 | $G59 | $G127 |
+|----------|--------|-------------|-------|
+| `/$G11/me/$G19` | GET | Get user $G19 | Any |
+| `/$G11/me/$G19/{notification_id}` | $G52 | Mark $G172 as read | Any |
+| `/$G11/me/$G19/$G69` | GET | Get $G172 $G69 | Any |
+| `/$G11/me/$G19/$G69` | $G52 | $G129 $G172 $G69 | Any |
+
+## Rate $G300
+- $G401 tier: 60 $G108 per $G473
+- $G433 tier: 120 $G108 per $G473
+- $G5: 180 $G108 per $G473
+
+## Error Responses
+All $G228 responses follow the $G145:
+```json
+{
+>> "$G228": {
+>> "code": "ERROR_CODE",
+    "$G199": "Human readable $G228 $G199",
+    "$G53": {
+>> // $G215 $G228 $G46 (optional)
+<< }
+<< }
+}
+```
+<< Common $G228 $G491:
+- `AUTHENTICATION_ERROR`: Invalid credentials
+- `AUTHORIZATION_ERROR`: Insufficient $G193
+- `VALIDATION_ERROR`: Invalid request data
+- `RESOURCE_NOT_FOUND`: Requested resource not found
+- `RATE_LIMIT_EXCEEDED`: Too many $G108
+- `INTERNAL_SERVER_ERROR`: Unexpected $G398 $G228
+````
+
+---
+File name: $G18/02. $G151/04. security_controls.md
+Last $G80: 2025-02-27 16:27:27
+---
+
+````md
+# $G42 $G402 and Rate $G300
+
+This $G70 outlines the $G136 controls and rate limiting strategies for the $G251 API.
+
+## $G22 $G42
+
+### JWT $G327 $G232
+- **$G327 Lifetime**: $G249 $G397 expire $G139 1 hour
+- **$G432 $G327 Lifetime**: $G432 $G397 expire $G139 7 days
+- **$G327 Signing Algorithm**: RS256 (asymmetric signatures)
+- **$G327 Payload**: $G293 user ID, role, $G193, and expiration time
+- **$G327 $G203**: 
+>> - $G466-side: HTTPOnly cookies with $G197 flag (web $G280)
+  - $G312: $G197 $G156 mechanisms (Keychain for iOS, EncryptedSharedPreferences for $G337)
+<< ### $G287 $G175
+- Minimum $G462: 10 characters
+- Must contain at least one uppercase letter, one lowercase letter, one number, and one special character
+- Passwords are hashed $G260 bcrypt with $G137 work factor
+- $G287 $G262 check: $G253 reuse last 5 passwords
+- $G411 lockout $G139 5 $G474 $G403 (unlocks $G139 15 minutes)
+
+### $G264 2.0 $G67
+- $G240 $G264 $G138 with proper $G74
+- State $G252 to prevent CSRF attacks
+- Limited requested scopes ($G116, $G274)
+- $G399 $G86 of $G264 $G397
+
+## API $G42 $G402
+
+### Transport $G273 $G42
+- TLS 1.2+ $G290 for all API communications
+- Strong cipher suites enforced
+- HTTP Strict Transport $G42 (HSTS) enabled
+- Certificate pinning for $G242 applications
+
+### Input Validation
+- All inputs $G55 for:
+>> - Type correctness
+  - Length constraints
+  - Format constraints (regex where $G137)
+  - $G155 $G86 (e.g., file uploads)
+- Parameterized $G341 for all $G87 $G311
+- API $G323 $G86 $G260 Pydantic models
+<< ### Output Encoding
+- $G399 $G434-type $G435
+- Character encoding specified (UTF-8)
+- HTML/JS encoding for any user-$G352 $G434
+
+### Cross-Origin $G226 Sharing (CORS)
+- $G281 CORS $G238:
+>> - $G436 origins: Only the official web $G280 domain
+  - $G436 methods: GET, POST, PUT, $G52, $G47
+  - $G436 $G435: $G54, $G155-Type
+  - Credentials: true
+  - Max age: 3600 seconds
+<< ### $G42 Headers
+- $G155-$G42-$G175: $G281 $G238 to prevent XSS
+- X-$G155-Type-$G430: nosniff
+- X-Frame-$G430: DENY
+- X-XSS-$G225: 1; mode=block
+- Referrer-$G175: strict-origin-when-cross-origin
+- Feature-$G175: $G281 to $G222 browser $G160
+
+## Rate $G300
+
+### General Rate $G300 $G388
+Rate $G309 are applied $G261 on the $G363 factors:
+- User role
+- $G23 sensitivity
+- IP $G45
+- $G22 $G60
+
+### Rate $G373 Tiers
+| Tier | Requests per Minute | User Type |
+|------|---------------------|-----------|
+| $G364 | 30 | Unauthenticated $G108 |
+| $G401 | 60 | Authenticated club $G14 |
+| $G433 | 120 | $G370 with $G154 $G38 |
+| $G5 | 180 | $G76 $G204 |
+
+### $G23-Specific Rate Limits
+| $G23 Category | $G364 | $G401 | $G433 | $G5 |
+|-------------------|-----------|----------|---------|-------|
+| $G22 | 10/min | 10/min | 10/min | 10/min |
+| Read Operations | 30/min | 60/min | 120/min | 180/min |
+| Write Operations | 15/min | 30/min | 60/min | 90/min |
+| $G469 Generation | 5/min | 10/min | 20/min | 30/min |
+
+### Rate $G373 Headers
+The API returns the $G363 $G435 to help clients $G248 rate $G309:
+- `X-$G365-$G373`: Total $G108 allowed in the $G265 $G475
+- `X-$G365-Remaining`: Remaining $G108 in the $G265 $G475
+- `X-$G365-Reset`: Time (in seconds) until the rate $G222 $G475 resets
+
+### Rate $G373 Enforcement
+- Rate $G309 are enforced $G260 a $G141 bucket algorithm
+- Redis is used as the backend for $G161 rate $G222 counters
+- Rate $G222 $G46 is logged for monitoring abuse $G291
+
+### Rate $G373 $G35
+When a rate $G222 is exceeded, the API returns:
+- HTTP $G457: 429 Too Many Requests
+- JSON body with $G228 $G53 and retry-$G139 $G46
+- `Retry-After` header indicating when the client can retry
+
+## Data $G225
+
+### Sensitive Data Handling
+- $G166 data is encrypted at rest $G260 AES-256
+- $G77-$G272 encryption for sensitive $G463 (PII)
+- Masked data in logs (emails, $G359, etc.)
+- Minimize data exposure in API responses (principle of least privilege)
+
+### File Upload $G402
+- Strict file type $G86 (MIME type checking)
+- File size $G309 (max 10MB for receipts/$G57)
+- $G155 $G404 for malware
+- $G197 $G156 with $G50 controls
+- No executable file uploads permitted
+
+### $G379 and $G224
+- $G271 $G87 $G346 (daily)
+- End-to-end encryption for $G346
+- Defined $G184 periods in line with data $G316 regulations
+- Tested $G288 procedures
+
+## $G42 Monitoring
+
+### $G428
+- Comprehensive $G416 of $G136 $G17:
+>> - $G22 $G403 (successful and $G474)
+  - $G54 decisions
+  - Data $G50 and modifications
+  - Rate $G222 violations
+  - API errors
+- Log $G145 follows structured $G416 practices
+- Logs are centralized and protected from tampering
+<< ### Alerting
+- $G243 alerts for:
+>> - Multiple $G474 $G324 $G403
+  - Unusual $G50 $G291
+  - Rate $G222 abuse
+  - $G54 violations
+  - $G77 connection issues
+  - API errors above threshold
+<< ### $G310 $G497
+- $G382 $G150 $G367 for all data modifications
+- $G310 logs $G420:
+>> - User ID
+  - $G476 timestamp
+  - IP $G45
+  - $G476 performed
+  - $G226 affected
+  - Before/$G139 $G200
+- Immutable $G150 $G367 $G156
+<< ## Incident $G35
+
+### $G42 Incident Procedure
+1. Detection and analysis
+2. Containment
+3. Eradication
+4. $G224
+5. Post-incident analysis
+6. $G354 (if $G290)
+
+### $G411 Lockout and $G224
+- $G243 $G335 lockout $G139 suspicious activity
+- $G197 $G335 $G288 workflow
+- $G442-factor $G239 for critical $G335 $G338
+
+## $G216
+
+### GDPR $G216
+- Data minimization $G317 applied
+- $G417 by $G196 in all $G160
+- Data subject rights $G263
+- Data $G149 records maintained
+- Data $G316 impact assessments for high-risk $G149
+
+### $G164 $G202 Regulations
+- $G216 with $G169 tax authority $G170
+- Data $G184 aligned with $G10 obligations
+- $G197 $G156 of $G10 $G9
+- $G399 $G191 of $G65 $G200 and tax benefits
+
+## $G42 $G343
+
+### $G271 $G343
+- $G243 $G136 $G404 in CI/CD pipeline
+- $G271 penetration testing ($G378)
+- Vulnerability assessments (quarterly)
+- Dependency $G404 for known vulnerabilities
+- $G42 code reviews
+
+### Responsible Disclosure
+- Defined responsible disclosure $G238
+- Process for $G136 researchers to $G325 vulnerabilities
+- Bug bounty program consideration
+````
+
+---
+File name: $G18/02. $G151/02. request_response_formats.md
+Last $G80: 2025-02-27 16:14:05
+---
+
+````md
+# $G83 and $G35 Formats
+
+This $G70 defines the $G294 request and response formats for the $G251 API. All examples are in JSON $G145.
+
+## $G22
+
+### POST /auth/$G324
+**$G83:**
+```json
+{
+>> "$G116": "user@$G275.com",
+  "$G66": "password123"
+}
+```
+<< **$G35:**
+```json
+{
+>> "access_token": "$G39...",
+  "refresh_token": "$G39...",
+  "token_type": "bearer",
+  "expires_in": 3600,
+  "user": {
+>> "id": "$G347",
+    "$G116": "user@$G275.com",
+    "$G152": "John",
+    "$G254": "Doe",
+    "role": "$G41"
+<< }
+}
+```
+<< ### POST /auth/$G165
+**$G83:**
+```json
+{
+>> "$G116": "newuser@$G275.com",
+  "$G66": "securepassword123",
+  "$G152": "Jane",
+  "$G254": "Smith",
+  "invitation_token": "inv_token_123456",
+  "$G45": {
+>> "$G206": "123 Main St",
+    "city": "$G90",
+    "$G96": "75001",
+    "$G158": "$G176"
+<< },
+  "$G383": "female",
+  "birth_date": "1990-01-15"
+}
+```
+<< **$G35:**
+```json
+{
+>> "$G199": "User registered successfully",
+  "$G21": "user456",
+  "access_token": "$G39...",
+  "refresh_token": "$G39...",
+  "token_type": "bearer",
+  "expires_in": 3600
+}
+```
+<< ## User $G210
+
+### GET /$G11/me
+**$G35:**
+```json
+{
+>> "id": "$G347",
+  "$G116": "user@$G275.com",
+  "$G152": "John",
+  "$G254": "Doe",
+  "$G383": "male",
+  "birth_date": "1985-03-20",
+  "$G45": {
+>> "$G206": "123 Main St",
+    "city": "$G90",
+    "$G96": "75001",
+    "$G158": "$G176"
+<< },
+  "club_memberships": [
+>> {
+>> "$G2": "$G348",
+      "$G356": "$G90 $G437 Club",
+      "role": "$G41",
+      "joined_at": "2023-01-$G332:30:00Z"
+<< }
+<< ],
+  "$G43": [
+>> {
+>> "id": "$G328",
+      "name": "$G166 Car",
+      "type": "car",
+      "$G64": 5,
+      "$G132": "AB-123-CD"
+<< }
+<< ],
+  "$G33": "2023-01-10T08:15:30Z",
+  "$G40": "2023-02-$G374:22:45Z"
+}
+```
+<< ### $G52 /$G11/me
+**$G83:**
+```json
+{
+>> "$G152": "Johnny",
+  "$G45": {
+>> "$G206": "456 New $G207",
+    "city": "$G90",
+    "$G96": "75002",
+    "$G158": "$G176"
+<< }
+}
+```
+<< **$G35:**
+```json
+{
+>> "id": "$G347",
+  "$G116": "user@$G275.com",
+  "$G152": "Johnny",
+  "$G254": "Doe",
+  "$G45": {
+>> "$G206": "456 New $G207",
+    "city": "$G90",
+    "$G96": "75002",
+    "$G158": "$G176"
+<< },
+  "$G40": "2023-03-10T09:45:12Z"
+}
+```
+<< ## $G385
+
+### POST /$G11/me/$G43
+**$G83:**
+```json
+{
+>> "name": "Work Car",
+  "type": "car",
+  "$G64": 7,
+  "$G132": "EF-789-GH"
+}
+```
+<< **$G35:**
+```json
+{
+>> "id": "vehicle890",
+  "name": "Work Car",
+  "type": "car",
+  "$G64": 7,
+  "$G132": "EF-789-GH",
+  "$G33": "2023-03-15T11:30:00Z",
+  "$G40": "2023-03-15T11:30:00Z"
+}
+```
+<< ## $G370
+
+### GET /$G3/{$G2}
+**$G35:**
+```json
+{
+>> "id": "$G348",
+  "name": "$G90 $G437 Club",
+  "$G68": "$G437 club for $G90 $G282",
+  "$G45": {
+>> "$G206": "789 Sports $G255",
+    "city": "$G90",
+    "$G96": "75008",
+    "$G158": "$G176"
+<< },
+  "$G116": "$G438@parisrunning.org",
+  "$G499": "+33123456789",
+  "subscription_status": "$G154",
+  "subscription_expiry": "2023-12-31T23:59:59Z",
+  "member_count": 42,
+  "$G33": "2022-01-$G375:00:00Z",
+  "$G40": "2023-02-15T14:30:22Z"
+}
+```
+<< ### POST /$G3
+**$G83 ($G5 only):**
+```json
+{
+>> "name": "Lyon $G349 Club",
+  "$G68": "$G349 club for Lyon $G282",
+  "$G45": {
+>> "$G206": "123 Cycle $G207",
+    "city": "Lyon",
+    "$G96": "69001",
+    "$G158": "$G176"
+<< },
+  "$G116": "$G438@lyoncycling.org",
+  "$G499": "+33987654321"
+}
+```
+<< **$G35:**
+```json
+{
+>> "id": "club456",
+  "name": "Lyon $G349 Club",
+  "$G68": "$G349 club for Lyon $G282",
+  "$G45": {
+>> "$G206": "123 Cycle $G207",
+    "city": "Lyon",
+    "$G96": "69001",
+    "$G158": "$G176"
+<< },
+  "$G116": "$G438@lyoncycling.org",
+  "$G499": "+33987654321",
+  "subscription_status": "free",
+  "member_count": 0,
+  "$G33": "2023-03-20T10:15:30Z",
+  "$G40": "2023-03-20T10:15:30Z"
+}
+```
+<< ## $G468
+
+### POST /$G3/{$G2}/$G17
+**$G83:**
+```json
+{
+>> "name": "$G329 $G177",
+  "$G68": "Our annual $G301 $G48",
+  "$G130": "2023-06-$G502:00:00Z",
+  "$G178": "2023-06-$G503:00:00Z",
+  "$G217": {
+>> "name": "City Park",
+    "$G45": "Park $G255, $G90",
+    "$G179": 48.8566,
+    "$G146": 2.3522
+<< },
+  "$G110": "2023-06-$G376:59:59Z",
+  "max_participants": 100
+}
+```
+<< **$G35:**
+```json
+{
+>> "id": "$G180",
+  "$G2": "$G348",
+  "name": "$G329 $G177",
+  "$G68": "Our annual $G301 $G48",
+  "$G130": "2023-06-$G502:00:00Z",
+  "$G178": "2023-06-$G503:00:00Z",
+  "$G217": {
+>> "name": "City Park",
+    "$G45": "Park $G255, $G90",
+    "$G179": 48.8566,
+    "$G146": 2.3522
+<< },
+  "$G110": "2023-06-$G376:59:59Z",
+  "max_participants": 100,
+  "$G147": 0,
+  "$G60": "$G296",
+  "$G33": "2023-03-20T11:30:00Z",
+  "$G40": "2023-03-20T11:30:00Z"
+}
+```
+<< ### GET /$G3/{$G2}/$G17
+**$G35:**
+```json
+{
+>> "$G448": 2,
+  "page": 1,
+  "$G302": 10,
+  "$G17": [
+>> {
+>> "id": "$G180",
+      "name": "$G329 $G177",
+      "$G130": "2023-06-$G502:00:00Z",
+      "$G178": "2023-06-$G503:00:00Z",
+      "$G217": {
+>> "name": "City Park",
+        "$G45": "Park $G255, $G90"
+<< },
+      "$G110": "2023-06-$G376:59:59Z",
+      "$G147": 42,
+      "$G60": "$G296"
+<< },
+    {
+>> "id": "$G405",
+      "name": "$G477 $G303",
+      "$G130": "2023-03-25T17:00:00Z",
+      "$G178": "2023-03-25T19:00:00Z",
+      "$G217": {
+>> "name": "$G303 Center",
+        "$G45": "Sports $G207, $G90"
+<< },
+      "$G110": "2023-04-10T23:59:59Z",
+      "$G147": 15,
+      "$G60": "$G296"
+<< }
+<< ]
+}
+```
+<< ## Expenses
+
+### POST /$G11/me/$G1
+**$G83:**
+```json
+{
+>> "$G34": "$G180",
+  "$G171": "$G44",
+  "$G406": 120.5,
+  "date": "2023-06-$G332:30:00Z",
+  "$G68": "$G478 to and from the $G301",
+  "$G89": "$G328",
+  "distance_km": 150,
+  "start_location": {
+>> "name": "Home",
+    "$G45": "456 New $G207, $G90",
+    "$G179": 48.8566,
+    "$G146": 2.3522
+<< },
+  "end_location": {
+>> "name": "City Park",
+    "$G45": "Park $G255, $G90",
+    "$G179": 48.8600,
+    "$G146": 2.3700
+<< }
+}
+```
+<< **$G35:**
+```json
+{
+>> "id": "$G229",
+  "$G34": "$G180",
+  "$G330": "$G329 $G177",
+  "$G21": "$G347",
+  "$G171": "$G44",
+  "$G406": 120.5,
+  "date": "2023-06-$G332:30:00Z",
+  "$G68": "$G478 to and from the $G301",
+  "$G89": "$G328",
+  "vehicle_name": "$G166 Car",
+  "distance_km": 150,
+  "$G64": 5,
+  "reimbursement_rate": 0.803,
+  "start_location": {
+>> "name": "Home",
+    "$G45": "456 New $G207, $G90",
+    "$G179": 48.8566,
+    "$G146": 2.3522
+<< },
+  "end_location": {
+>> "name": "City Park",
+    "$G45": "Park $G255, $G90",
+    "$G179": 48.8600,
+    "$G146": 2.3700
+<< },
+  "$G60": "$G342",
+  "$G33": "2023-06-$G504:45:12Z",
+  "$G40": "2023-06-$G504:45:12Z"
+}
+```
+<< ### GET /$G11/me/$G1
+**$G35:**
+```json
+{
+>> "$G448": 2,
+  "page": 1,
+  "$G302": 10,
+  "$G1": [
+>> {
+>> "id": "$G229",
+      "$G34": "$G180",
+      "$G330": "$G329 $G177",
+      "$G171": "$G44",
+      "$G406": 120.5,
+      "date": "2023-06-$G332:30:00Z",
+      "$G60": "$G342",
+      "$G33": "2023-06-$G504:45:12Z"
+<< },
+    {
+>> "id": "expense101",
+      "$G34": "$G405",
+      "$G330": "$G477 $G303",
+      "$G171": "toll",
+      "$G406": 15.20,
+      "date": "2023-03-25T16:30:00Z",
+      "$G60": "$G55",
+      "validated_at": "2023-03-26T09:15:00Z",
+      "$G33": "2023-03-25T21:10:30Z"
+<< }
+<< ]
+}
+```
+<< ### POST /$G3/{$G2}/$G1/{$G27}/$G299
+**$G83:**
+```json
+{
+>> "$G60": "$G55",
+  "$G212": "$G15 $G295. Thank you for the clear $G18."
+}
+```
+<< **$G35:**
+```json
+{
+>> "id": "$G229",
+  "$G60": "$G55",
+  "$G212": "$G15 $G295. Thank you for the clear $G18.",
+  "validated_by": "manager456",
+  "validated_at": "2023-06-$G505:20:30Z",
+  "$G40": "2023-06-$G505:20:30Z"
+}
+```
+<< ## $G202 Documents
+
+### POST /$G3/{$G2}/$G10-$G9
+**$G83:**
+```json
+{
+>> "year": 2023,
+  "type": "$G181",
+  "$G145": "pdf"
+}
+```
+<< **$G35:**
+```json
+{
+>> "id": "$G283",
+  "$G2": "$G348",
+  "year": 2023,
+  "type": "$G181",
+  "$G145": "pdf",
+  "$G60": "$G149",
+  "$G304": null,
+  "$G33": "2023-07-$G374:20:30Z",
+  "$G40": "2023-07-$G374:20:30Z"
+}
+```
+<< ### GET /$G3/{$G2}/$G10-$G9
+**$G35:**
+```json
+{
+>> "$G448": 2,
+  "page": 1,
+  "$G302": 10,
+  "$G9": [
+>> {
+>> "id": "$G283",
+      "year": 2023,
+      "type": "$G181",
+      "$G145": "pdf",
+      "$G60": "$G247",
+      "$G304": "$G372://api.$G189.com/$G223/$G9/$G283.pdf",
+      "$G33": "2023-07-$G374:20:30Z",
+      "$G40": "2023-07-$G374:25:45Z"
+<< },
+    {
+>> "id": "document456",
+      "year": 2022,
+      "type": "annual_summary",
+      "$G145": "pdf",
+      "$G60": "$G247",
+      "$G304": "$G372://api.$G189.com/$G223/$G9/document456.pdf",
+      "$G33": "2023-01-$G332:10:10Z",
+      "$G40": "2023-01-$G332:15:30Z"
+<< }
+<< ]
+}
+```
+<< ## Reports
+
+### GET /$G3/{$G2}/$G58/$G1
+**$G83 Parameters:**
+```
+$G130=2023-01-$G375:00:00Z
+$G178=2023-06-$G376:59:59Z
+$G145=csv
+$G60=$G55
+```
+
+**$G35:**
+```json
+{
+>> "id": "report789",
+  "type": "expense_report",
+  "$G29": {
+>> "$G130": "2023-01-$G375:00:00Z",
+    "$G178": "2023-06-$G376:59:59Z",
+    "$G145": "csv",
+    "$G60": "$G55"
+<< },
+  "$G60": "$G247",
+  "$G304": "$G372://api.$G189.com/$G223/$G58/report789.csv",
+  "$G33": "2023-07-01T09:30:00Z",
+  "$G40": "2023-07-01T09:31:15Z"
+}
+```
+<< ## $G230
+
+### GET /$G11/me/$G19
+**$G35:**
+```json
+{
+>> "$G448": 2,
+  "unread": 1,
+  "page": 1,
+  "$G302": 10,
+  "$G19": [
+>> {
+>> "id": "notif123",
+      "type": "expense_validated",
+      "title": "$G15 Validated",
+      "$G199": "Your $G7 '$G478 to $G177' has been $G55",
+      "data": {
+>> "$G27": "$G229",
+        "$G34": "$G180"
+<< },
+      "read": $G488,
+      "$G33": "2023-06-$G505:20:35Z"
+<< },
+    {
+>> "id": "notif456",
+      "type": "event_reminder",
+      "title": "Upcoming $G114",
+      "$G199": "Reminder: $G477 $G303 is tomorrow at 5:00 PM",
+      "data": {
+>> "$G34": "$G405"
+<< },
+      "read": true,
+      "$G33": "2023-03-24T09:00:00Z",
+      "read_at": "2023-03-24T09:05:22Z"
+<< }
+<< ]
+}
+```
+<< ## $G5 $G63
+
+### GET /$G73/$G10-$G29/{year}
+**$G35:**
+```json
+{
+>> "year": 2023,
+  "mileage_rates": [
+>> {"$G64": 3, "rate": 0.502},
+    {"$G64": 4, "rate": 0.575},
+    {"$G64": 5, "rate": 0.603},
+    {"$G64": 6, "rate": 0.631},
+    {"$G64": 7, "rate": 0.661}
+<< ],
+  "max_donation_amount": 20000,
+  "max_tax_reduction_percentage": 66,
+  "min_donation_amount": 10,
+  "$G33": "2023-01-$G375:00:00Z",
+  "$G40": "2023-01-$G375:00:00Z"
+}
+```
+````
+<< ---
+File name: $G18/02. $G151/03. authorization_rules.md
+Last $G80: 2025-02-27 16:23:59
+---
+
+````md
+# $G54 Rules
+
+This $G70 defines the authorization $G486 for all API $G250 in the $G251 $G28. These $G486 determine what actions different user $G214 can perform.
+
+## User $G127
+
+1. **$G76 $G107** (`$G73`)
+>> - Has complete $G50 to all $G28 functionalities
+   - Can $G248 $G3, $G11, and $G28 $G69
+   - Can view and modify all data
+<< 2. **Club $G4** (`$G418`)
+>> - Can $G248 $G140 own club's data
+   - Can $G248 club $G14 and $G17
+   - Can $G299 $G1 and $G377 $G58
+   - $G253 $G50 data from $G445 $G3
+<< 3. **Club $G12** (`$G41`)
+>> - Can submit and view $G140 own $G1
+   - Can view $G140 own $G10 $G9
+   - Can participate in club $G17
+   - $G253 $G50 $G445 $G14' data
+<< ## $G54 Principles
+
+1. **Role-Based $G249 $G429**: Permissions are $G261 on user $G214
+2. **$G226 Ownership**: $G369 can only $G50 $G362 they own or have been granted $G50 to
+3. **Club Membership**: $G249 to club $G362 is restricted to $G14 of that club
+4. **Hierarchical $G249**: Higher-$G272 $G214 inherit $G193 from lower-$G272 $G214
+
+## $G23 $G54 Rules
+
+### $G22 $G63
+| $G23 | $G364 | $G12 | $G4 | $G5 | $G153 |
+|----------|-----------|--------|---------|-------|-------|
+| `/auth/$G324` | ✅ | ✅ | ✅ | ✅ | |
+| `/auth/$G165` | ✅ | ✅ | ✅ | ✅ | Requires $G104 $G141 |
+| `/auth/$G498/$G470` | ✅ | ✅ | ✅ | ✅ | |
+| `/auth/$G431-$G141` | ✅ | ✅ | ✅ | ✅ | |
+| `/auth/$G471-$G66` | ✅ | ✅ | ✅ | ✅ | |
+| `/auth/$G259-$G66` | ✅ | ✅ | ✅ | ✅ | Requires $G259 $G141 |
+| `/auth/logout` | ❌ | ✅ | ✅ | ✅ | |
+
+### User $G63
+| $G23 | $G12 | $G4 | $G5 | $G153 |
+|----------|--------|---------|-------|-------|
+| `/$G11/me` (GET) | ✅ | ✅ | ✅ | |
+| `/$G11/me` ($G52) | ✅ | ✅ | ✅ | $G253 change role |
+| `/$G11` (GET) | ❌ | ❌ | ✅ | |
+| `/$G11/{$G21}` (GET) | ❌ | ✅ | ✅ | $G4: Only for club $G14 |
+| `/$G11/{$G21}` ($G52) | ❌ | ❌ | ✅ | |
+| `/$G11/{$G21}` ($G47) | ❌ | ❌ | ✅ | |
+| `/$G11/me/$G43` (GET) | ✅ | ✅ | ✅ | |
+| `/$G11/me/$G43` (POST) | ✅ | ✅ | ✅ | |
+| `/$G11/me/$G43/{$G89}` (GET) | ✅ | ✅ | ✅ | Own $G43 only |
+| `/$G11/me/$G43/{$G89}` ($G52) | ✅ | ✅ | ✅ | Own $G43 only |
+| `/$G11/me/$G43/{$G89}` ($G47) | ✅ | ✅ | ✅ | Own $G43 only |
+
+### Club $G63
+| $G23 | $G12 | $G4 | $G5 | $G153 |
+|----------|--------|---------|-------|-------|
+| `/$G3` (GET) | ❌ | ❌ | ✅ | |
+| `/$G3` (POST) | ❌ | ❌ | ✅ | |
+| `/$G3/{$G2}` (GET) | ✅ | ✅ | ✅ | $G12: Only own $G3 |
+| `/$G3/{$G2}` ($G52) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}` ($G47) | ❌ | ❌ | ✅ | |
+| `/$G3/{$G2}/$G14` (GET) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G14` (POST) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G14/{$G21}` (GET) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G14/{$G21}` ($G52) | ❌ | ✅ | ✅ | $G4: $G253 promote to $G73 |
+| `/$G3/{$G2}/$G14/{$G21}` ($G47) | ❌ | ✅ | ✅ | $G4: $G253 remove admins |
+| `/$G3/{$G2}/$G95` (GET) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G95` (POST) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G95/{invitation_id}` ($G47) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G38` (GET) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G38` (POST) | ❌ | ✅ | ✅ | $G4: Only own club |
+
+### $G114 $G63
+| $G23 | $G12 | $G4 | $G5 | $G153 |
+|----------|--------|---------|-------|-------|
+| `/$G3/{$G2}/$G17` (GET) | ✅ | ✅ | ✅ | $G12: Only own $G3 |
+| `/$G3/{$G2}/$G17` (POST) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G17/{$G34}` (GET) | ✅ | ✅ | ✅ | $G12: Only own $G3 |
+| `/$G3/{$G2}/$G17/{$G34}` ($G52) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G17/{$G34}` ($G47) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G17/{$G34}/$G84` (GET) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G17/{$G34}/$G84` (POST) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G17/{$G34}/$G84/{$G21}` ($G47) | ❌ | ✅ | ✅ | $G4: Only own club |
+
+### $G15 $G63
+| $G23 | $G12 | $G4 | $G5 | $G153 |
+|----------|--------|---------|-------|-------|
+| `/$G1` (GET) | ❌ | ❌ | ✅ | |
+| `/$G3/{$G2}/$G1` (GET) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G17/{$G34}/$G1` (GET) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G11/me/$G1` (GET) | ✅ | ✅ | ✅ | |
+| `/$G11/me/$G1` (POST) | ✅ | ✅ | ✅ | |
+| `/$G11/me/$G1/{$G27}` (GET) | ✅ | ✅ | ✅ | $G12: Own $G1 only |
+| `/$G11/me/$G1/{$G27}` ($G52) | ✅ | ✅ | ✅ | $G12: Own $G1 only, if not $G55 |
+| `/$G11/me/$G1/{$G27}` ($G47) | ✅ | ✅ | ✅ | $G12: Own $G1 only, if not $G55 |
+| `/$G3/{$G2}/$G1/{$G27}` (GET) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G1/{$G27}/$G299` (POST) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G1/{$G27}/$G57` (POST) | ✅ | ✅ | ✅ | $G12: Own $G1 only |
+| `/$G1/{$G27}/$G57/{$G195}` (GET) | ✅ | ✅ | ✅ | $G12: Own $G1 only |
+| `/$G1/{$G27}/$G57/{$G195}` ($G47) | ✅ | ✅ | ✅ | $G12: Own $G1 only, if not $G55 |
+
+### $G202 $G167 $G63
+| $G23 | $G12 | $G4 | $G5 | $G153 |
+|----------|--------|---------|-------|-------|
+| `/$G3/{$G2}/$G10-$G9` (GET) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G10-$G9` (POST) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G10-$G9/{$G78}` (GET) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G10-$G9/{$G78}/$G168` (GET) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G11/me/$G10-$G9` (GET) | ✅ | ✅ | ✅ | |
+| `/$G11/me/$G10-$G9/{$G78}` (GET) | ✅ | ✅ | ✅ | $G12: Own $G9 only |
+| `/$G11/me/$G10-$G9/{$G78}/$G168` (GET) | ✅ | ✅ | ✅ | $G12: Own $G9 only |
+
+### $G390 $G63
+| $G23 | $G12 | $G4 | $G5 | $G153 |
+|----------|--------|---------|-------|-------|
+| `/$G3/{$G2}/$G30` (GET) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G30/$G157` (GET) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G11/me/$G30` (GET) | ✅ | ✅ | ✅ | |
+| `/$G11/me/$G30/$G157` (GET) | ✅ | ✅ | ✅ | |
+
+### $G469 $G63
+| $G23 | $G12 | $G4 | $G5 | $G153 |
+|----------|--------|---------|-------|-------|
+| `/$G3/{$G2}/$G58/$G1` (GET) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G58/$G30` (GET) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G58/$G14` (GET) | ❌ | ✅ | ✅ | $G4: Only own club |
+| `/$G3/{$G2}/$G58/$G17` (GET) | ❌ | ✅ | ✅ | $G4: Only own club |
+
+### $G5 $G63
+| $G23 | $G12 | $G4 | $G5 | $G153 |
+|----------|--------|---------|-------|-------|
+| `/$G73/$G10-$G29` (GET) | ❌ | ❌ | ✅ | |
+| `/$G73/$G10-$G29` (POST) | ❌ | ❌ | ✅ | |
+| `/$G73/$G10-$G29/{year}` (GET) | ❌ | ❌ | ✅ | |
+| `/$G73/$G10-$G29/{year}` ($G52) | ❌ | ❌ | ✅ | |
+| `/$G73/$G28-$G326` (GET) | ❌ | ❌ | ✅ | |
+| `/$G73/$G28-$G326` ($G52) | ❌ | ❌ | ✅ | |
+| `/$G73/$G150-logs` (GET) | ❌ | ❌ | ✅ | |
+
+### $G101 $G63
+| $G23 | $G12 | $G4 | $G5 | $G153 |
+|----------|--------|---------|-------|-------|
+| `/$G11/me/$G19` (GET) | ✅ | ✅ | ✅ | |
+| `/$G11/me/$G19/{notification_id}` ($G52) | ✅ | ✅ | ✅ | Own $G19 only |
+| `/$G11/me/$G19/$G69` (GET) | ✅ | ✅ | ✅ | |
+| `/$G11/me/$G19/$G69` ($G52) | ✅ | ✅ | ✅ | |
+
+## Row-$G493 $G42 $G391
+
+For enhanced $G136, the $G28 implements row-$G272 $G136 in the $G87 with the $G363 $G381:
+
+1. **Club Data Isolation**
+>> - Club $G85 can only $G50 data $G111 to $G3 they $G248
+   - Club $G14 can only $G50 data $G111 to $G3 they $G459 to
+<< 2. **User Data $G225**
+>> - $G369 can only $G50 $G140 own $G285 data
+   - $G407 can view basic $G46 $G444 $G140 club $G14
+   - $G479 can $G50 all user data
+<< 3. **$G15 Visibility**
+>> - Members can only view $G140 own $G1
+   - $G407 can view all $G1 within $G140 club
+   - $G479 can view all $G1 in the $G28
+<< 4. **$G167 $G249 $G429**
+>> - Members can only $G50 $G9 $G352 for them
+   - $G407 can $G50 all $G9 $G111 to $G140 club
+   - $G479 can $G50 all $G9 in the $G28
+<< ## $G310 $G497 $G241
+
+All actions that modify data will be logged in the $G150 $G367, including:
+- User ID
+- $G476 type
+- $G226 affected
+- Timestamp
+- IP $G45
+- Changes made (before/$G139 $G200)
+
+The $G150 $G367 is accessible only to $G204 $G422 the `/$G73/$G150-logs` endpoint.
+````
+>> ## $G215 Files
+<< > ⚠️ **IMPORTANT**: These $G223 must be taken very seriously as they represent the latest up-to-date versions of our codebase. You MUST rely on these versions and $G140 $G434 imperatively.
+>> ### $G256 Structure
+<< text
+.
+├── CLAUDE.md
+├── $G276
+├── conversation_log.txt
+├── digest.txt
+├── $G18
+│   ├── 01. $G305 $G148 $G208
+│   │   ├── 01. $G256 functional $G257.md
+│   │   ├── 02. $G56 $G125.md
+│   │   └── 03. $G77 $G244 $G318.md
+│   └── 02. $G151
+│       ├── 01. api_endpoints.md
+│       ├── 02. request_response_formats.md
+│       ├── 03. authorization_rules.md
+│       └── 04. security_controls.md
+├── kb_scripts
+│   ├── $G190.sh
+│   └── utcp.sh
+├── knowledge_base
+│   ├── $G190 1.md
+│   ├── $G190.md
+│   ├── $G190.md.utcp
+│   ├── $G190.txt
+│   └── knowledge_header.md
+├── node_modules
+│   ├── ansi-styles
+│   │   ├── $G79.d.ts
+│   │   ├── $G79.js
+│   │   ├── $G350
+│   │   ├── $G75.json
+│   │   └── $G408.md
+│   ├── chalk
+│   │   ├── $G79.d.ts
+│   │   ├── $G350
+│   │   ├── $G75.json
+│   │   ├── $G408.md
+│   │   └── source
+│   │       ├── $G79.js
+│   │       ├── templates.js
+│   │       └── util.js
+│   ├── $G500-$G410
+│   │   ├── CHANGELOG.md
+│   │   ├── $G276
+│   │   ├── $G331.md
+│   │   ├── conversions.js
+│   │   ├── $G79.js
+│   │   ├── $G75.json
+│   │   └── route.js
+│   ├── $G500-name
+│   │   ├── $G276
+│   │   ├── $G331.md
+│   │   ├── $G79.js
+│   │   └── $G75.json
+│   ├── commander
+│   │   ├── $G276
+│   │   ├── Readme.md
+│   │   ├── esm.mjs
+│   │   ├── $G79.js
+│   │   ├── lib
+│   │   │   ├── argument.js
+│   │   │   ├── command.js
+│   │   │   ├── $G228.js
+│   │   │   ├── help.js
+│   │   │   ├── option.js
+│   │   │   └── suggestSimilar.js
+│   │   ├── $G75-$G263.json
+│   │   ├── $G75.json
+│   │   └── typings
+│   │       ├── esm.d.mts
+│   │       └── $G79.d.ts
+│   ├── crypto
+│   │   ├── $G331.md
+│   │   └── $G75.json
+│   ├── has-flag
+│   │   ├── $G79.d.ts
+│   │   ├── $G79.js
+│   │   ├── $G350
+│   │   ├── $G75.json
+│   │   └── $G408.md
+│   ├── husky
+│   │   ├── $G276
+│   │   ├── $G331.md
+│   │   ├── husky.sh
+│   │   ├── lib
+│   │   │   ├── bin.d.ts
+│   │   │   ├── bin.js
+│   │   │   ├── $G79.d.ts
+│   │   │   └── $G79.js
+│   │   └── $G75.json
+│   ├── $G387-$G500
+│   │   ├── browser.js
+│   │   ├── $G79.js
+│   │   ├── $G350
+│   │   ├── $G75.json
+│   │   └── $G408.md
+│   └── utcp
+│       ├── $G331.md
+│       ├── UTCP_instructions.md
+│       ├── bin
+│       │   └── utcp.js
+│       ├── jest.$G326.js
+│       ├── lib
+│       │   ├── __tests__
+│       │   │   ├── $G439-text-test.d.ts
+│       │   │   ├── $G439-text-test.js
+│       │   │   ├── $G446-file-test.d.ts
+│       │   │   └── $G446-file-test.js
+│       │   ├── $G284.d.ts
+│       │   ├── $G284.js
+│       │   ├── $G234.d.ts
+│       │   ├── $G234.js
+│       │   ├── $G79.d.ts
+│       │   ├── $G79.js
+│       │   ├── $G307.d.ts
+│       │   ├── $G307.js
+│       │   ├── $G501.d.ts
+│       │   └── $G501.js
+│       ├── $G75.json
+│       ├── src
+│       │   ├── __tests__
+│       │   │   ├── $G439-text.test.ts
+│       │   │   ├── file-$G311.test.ts
+│       │   │   ├── $G446-file-test.ts
+│       │   │   └── utcp.test.ts
+│       │   ├── $G284.ts
+│       │   ├── $G234.ts
+│       │   ├── $G79.ts
+│       │   ├── $G307.ts
+│       │   └── $G501.ts
+│       └── tsconfig.json
+├── $G75-lock.json
+├── $G75.json
+├── pnpm-lock.yaml
+└── unshrinked_kb.md
+
+26 directories, 108 $G223
+>> 2025-02-27 22:52:23
+
+</CONTENT>
+
+<EOF:checksum="3670f64982bd211db1cf8bdfd668ced2">
+</UTCP-v1>
