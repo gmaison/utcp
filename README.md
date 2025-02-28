@@ -10,6 +10,8 @@ A Node.js implementation of the Universal Text Compression Protocol for compress
 4. **Intelligent Fallback** - Automatically uses original content when compression would be ineffective
 5. **Metadata Preservation** - Retains file information like checksums and line counts
 6. **LLM-Friendly Structure** - Dictionaries and references are useful context for language models
+7. **Parallel Processing** - Leverages multi-core processing for large files to improve performance
+8. **Token-Based Splitting** - Automatically splits large files into manageable chunks based on token count limits
 
 ## Installation
 
@@ -40,6 +42,11 @@ utcp compress path/to/file.txt
 Options:
 - `-m, --min-occurrences <number>` - Minimum occurrences for dictionary terms (default: 3)
 - `-v, --preserve-verbatim` - Preserve verbatim sections
+- `-p, --parallel` - Use parallel processing for large files
+- `-t, --parallel-threshold <number>` - Size threshold for parallel processing in bytes (default: 1MB)
+- `-s, --split-by-tokens` - Split large files by token count for LLM compatibility
+- `--max-tokens <number>` - Maximum tokens per file when splitting (default: 40000)
+- `--chars-per-token <number>` - Characters per token ratio for estimation (default: 4)
 
 #### Decompress a File
 
@@ -64,13 +71,23 @@ You can also use the UTCP library programmatically in your Node.js applications.
 ```javascript
 const utcp = require('utcp');
 
-// Compress a file
-const outputPath = utcp.compressFile('/path/to/file.txt', {
+// Compress a file with advanced options
+const outputPath = await utcp.compressFile('/path/to/file.txt', {
   minOccurrences: 3,
-  preserveVerbatim: true
+  preserveVerbatim: true,
+  useParallel: true,
+  parallelThreshold: 1024 * 1024, // 1MB
+  splitByTokens: true,
+  maxTokensPerFile: 40000,
+  charsPerToken: 4
 });
 
-console.log(`Compressed file saved to: ${outputPath}`);
+// If token-based splitting is enabled, outputPath may be an array of file paths
+if (Array.isArray(outputPath)) {
+  console.log(`Compressed files saved to: ${outputPath.join(', ')}`);
+} else {
+  console.log(`Compressed file saved to: ${outputPath}`);
+}
 ```
 
 #### Decompress a File
@@ -91,12 +108,21 @@ console.log(`Decompressed file saved to: ${outputPath}`);
 ```javascript
 const utcp = require('utcp');
 
-// Compress a string
+// Compress a string with advanced options
 const content = 'Your text content here...';
-const result = utcp.compressString(content, 'virtual.txt');
+const result = await utcp.compressString(content, 'virtual.txt', {
+  useParallel: true,
+  splitByTokens: true,
+  maxTokensPerFile: 40000
+});
 
 console.log(`Compressed content: ${result.compressedContent}`);
 console.log(`Compression ratio: ${result.compressionRatio}`);
+
+// Check if split files were created
+if (result.splitFiles) {
+  console.log(`Content was split into ${result.splitFiles.length} files due to token limits`);
+}
 
 // Decompress a string
 const compressedContent = result.compressedContent;
@@ -118,6 +144,17 @@ The Universal Text Compression Protocol uses several techniques to compress text
 6. **Verification**: Includes checksums to verify integrity.
 7. **Format Description**: Self-documenting instructions for decompression.
 8. **Intelligent Fallback**: Preserves original content when compression is ineffective.
+9. **Parallel Processing**: Uses multiple CPU cores to accelerate compression of large files.
+10. **File Splitting**: Automatically divides large compressed content into multiple files based on token limits.
+
+### Split File Format
+
+When a file is split due to token limits, UTCP creates:
+
+1. **Index File**: Contains metadata about all parts and their relationships (filename.utcp)
+2. **Part Files**: Contains chunks of the compressed content (filename.part1.utcp, filename.part2.utcp, etc.)
+
+The decompression process automatically detects split files and recombines them before decompression.
 
 A typical UTCP file looks like:
 
