@@ -8,7 +8,7 @@ import {
 
 describe('UTCP Large File Compression', () => {
   // Create test with a large file (50K characters) from a public domain work
-  test('Should efficiently compress and decompress large text files', () => {
+  test('Should efficiently compress and decompress large text files', async () => {
     // Generate a large text that's public domain
     // We'll use a procedurally generated text that mimics literary style but isn't copied
     // This avoids copyright issues while still testing with appropriate content
@@ -142,31 +142,33 @@ describe('UTCP Large File Compression', () => {
     console.log(`Generated text length: ${largeText.length} characters`);
     
     // Test the compression/decompression
-    // Compress the large text
-    const compressionResult = compressString(largeText, 'large-text.txt');
+    // Compress the large text (updated for async operation)
+    return (async () => {
+      const compressionResult = await compressString(largeText, 'large-text.txt');
+      
+      // There should be compression benefit
+      expect(compressionResult.compressionRatio).toBeGreaterThan(1);
+      console.log(`Compression ratio: ${compressionResult.compressionRatio}`);
+      console.log(`Original size: ${largeText.length} bytes`);
+      console.log(`Compressed size: ${Buffer.from(compressionResult.compressedContent).length} bytes`);
+      
+      // Verify dictionaries were created
+      expect(Object.keys(compressionResult.dictionaries.global).length).toBeGreaterThan(0);
+      console.log(`Dictionary entries: ${Object.keys(compressionResult.dictionaries.global).length}`);
+      
+      // Verify references were created
+      expect(Object.keys(compressionResult.references).length).toBeGreaterThan(0);
+      console.log(`Reference entries: ${Object.keys(compressionResult.references).length}`);
+      
+      // Decompress the compressed content
+      const decompressionResult = decompressString(
+        compressionResult.compressedContent, 
+        'large-text.txt.utcp'
+      );
     
-    // There should be compression benefit
-    expect(compressionResult.compressionRatio).toBeGreaterThan(1);
-    console.log(`Compression ratio: ${compressionResult.compressionRatio}`);
-    console.log(`Original size: ${largeText.length} bytes`);
-    console.log(`Compressed size: ${Buffer.from(compressionResult.compressedContent).length} bytes`);
-    
-    // Verify dictionaries were created
-    expect(Object.keys(compressionResult.dictionaries.global).length).toBeGreaterThan(0);
-    console.log(`Dictionary entries: ${Object.keys(compressionResult.dictionaries.global).length}`);
-    
-    // Verify references were created
-    expect(Object.keys(compressionResult.references).length).toBeGreaterThan(0);
-    console.log(`Reference entries: ${Object.keys(compressionResult.references).length}`);
-    
-    // Decompress the compressed content
-    const decompressionResult = decompressString(
-      compressionResult.compressedContent, 
-      'large-text.txt.utcp'
-    );
-    
-    // The decompressed content should match the original
-    expect(decompressionResult.originalContent).toEqual(largeText);
-    expect(decompressionResult.verified).toBeTruthy();
+      // The decompressed content should match the original
+      expect(decompressionResult.originalContent).toEqual(largeText);
+      expect(decompressionResult.verified).toBeTruthy();
+    })();
   });
 });

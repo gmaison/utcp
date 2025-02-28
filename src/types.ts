@@ -26,6 +26,11 @@ export interface References {
 export interface CompressionOptions {
   minOccurrences?: number;
   preserveVerbatim?: boolean;
+  useParallel?: boolean;
+  parallelThreshold?: number;
+  splitByTokens?: boolean;
+  maxTokensPerFile?: number;
+  charsPerToken?: number;
 }
 
 export interface DecompressionOptions {
@@ -38,6 +43,7 @@ export interface CompressionResult {
   dictionaries: Dictionaries;
   references: References;
   compressionRatio: number;
+  splitFiles?: string[]; // Paths to split files when using token-based splitting
 }
 
 export interface DecompressionResult {

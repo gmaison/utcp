@@ -1,4 +1,6 @@
 import * as path from 'path';
+import * as os from 'os';
+import { Worker } from 'worker_threads';
 import {
 CompressionOptions,
 CompressionResult,
@@ -17,6 +19,16 @@ writeFile,
 
 // Minimum file size to use full compression (500 bytes)
 const MIN_FILE_SIZE = 500;
+
+// Default threshold for using parallel processing (1MB)
+const DEFAULT_PARALLEL_THRESHOLD = 1024 * 1024;
+
+// Default number of chunks for parallel processing
+const DEFAULT_CHUNK_COUNT = Math.max(2, os.cpus().length);
+
+// Default token settings for file splitting
+const DEFAULT_CHARS_PER_TOKEN = 4;
+const DEFAULT_MAX_TOKENS_PER_FILE = 40000;
 
 // Minimum length for dictionary terms when optimizing for tokens
 const MIN_TERM_LENGTH = 5;
@@ -42,50 +54,81 @@ export class UTCPCompressor {
     this.minOccurrences = options.minOccurrences || 2;
     this.metadata = generateMetadata(filePath, content);
   }
+  
+  /**
+   * Process a chunk of text in parallel to find patterns
+   * @param chunk Text chunk to process
+   * @param minLength Minimum pattern length
+   * @returns Map of patterns and their frequencies
+   */
+  private static processChunk(chunk: string, minLength: number): Map<string, number> {
+    const patterns = new Map<string, number>();
+    
+    // Process identifiers
+    const identifierRegex = /\b(?!(?:function|class|const|let|var)\b)([a-zA-Z_$][a-zA-Z0-9_$]*)\b/g;
+    let match;
+    while ((match = identifierRegex.exec(chunk)) !== null) {
+      const identifier = match[1];
+      if (identifier.length < minLength) continue;
+      patterns.set(identifier, (patterns.get(identifier) || 0) + 1);
+    }
+    
+    // Process words
+    const wordRegex = /\b(\w+)\b/g;
+    let wordMatch;
+    while ((wordMatch = wordRegex.exec(chunk)) !== null) {
+      const word = wordMatch[1];
+      if (word.length < minLength) continue;
+      if (patterns.has(word)) continue; // Skip identified variables
+      patterns.set(word, (patterns.get(word) || 0) + 1);
+    }
+    
+    return patterns;
+  }
 
   /**
    * Compress the content using UTCP
    */
-public compress(): CompressionResult {
-// Calculate input size
-const originalSize = Buffer.from(this.content).length;
+public async compress(): Promise<CompressionResult> {
+  // Calculate input size
+  const originalSize = Buffer.from(this.content).length;
 
-// For small files, use simplified compression
-if (originalSize < MIN_FILE_SIZE) {
+  // For small files, use simplified compression
+  if (originalSize < MIN_FILE_SIZE) {
     // Skip dictionary building and use simple metadata
     this.compressedContent = `<UTCP-v1-light>\n<META:size="${originalSize}">\n${this.content}\n</UTCP-v1-light>`;
     const compressedSize = Buffer.from(this.compressedContent).length;
     return {
-    compressedContent: this.compressedContent,
-    metadata: {
+      compressedContent: this.compressedContent,
+      metadata: {
         type: path.extname(this.filePath),
         checksum: calculateChecksum(this.content),
         size: originalSize,
         lines: countLines(this.content),
         date: new Date().toISOString()
-    },
-    dictionaries: { global: {} },
-    references: {},
-    compressionRatio: originalSize / compressedSize
+      },
+      dictionaries: { global: {} },
+      references: {},
+      compressionRatio: originalSize / compressedSize
     };
-}
+  }
 
-// 1. Build dictionaries
-this.buildGlobalDictionary();
-this.buildDomainDictionaries();
+  // 1. Build dictionaries - use parallel processing for large files if enabled
+  await this.buildGlobalDictionaryParallel();
+  this.buildDomainDictionaries();
 
-// 2. Find and create structure references
-this.createStructureReferences();
+  // 2. Find and create structure references
+  this.createStructureReferences();
 
-// 3. Apply compression rules
-let processedContent = this.applyCompressionRules(this.content);
+  // 3. Apply compression rules
+  let processedContent = this.applyCompressionRules(this.content);
 
-// 4. Generate the full compressed output
-this.compressedContent = this.generateCompressedOutput(processedContent);
+  // 4. Generate the full compressed output
+  this.compressedContent = this.generateCompressedOutput(processedContent);
 
-// 5. Calculate compression ratio
-const compressedSize = Buffer.from(this.compressedContent).length;
-const compressionRatio = originalSize / compressedSize;
+  // 5. Calculate compression ratio
+  const compressedSize = Buffer.from(this.compressedContent).length;
+  const compressionRatio = originalSize / compressedSize;
 
 // 6. Check if compression is effective for TOKEN reduction - if not, use original content
 // For LLM token efficiency, we need to make sure the compression is worth it, but let's be lenient
@@ -129,78 +172,234 @@ return {
 
   /**
    * Save the compressed content to a file
+   * If token-based splitting is enabled, will create multiple files for large content
    */
-  public save(): string {
+  public save(): string | string[] {
+    // Get the base output path
     const outputPath = `${this.filePath}.utcp`;
-    writeFile(outputPath, this.compressedContent);
-    return outputPath;
+
+    // If splitting by tokens is not enabled, just save the file normally
+    if (!this.options.splitByTokens) {
+      writeFile(outputPath, this.compressedContent);
+      return outputPath;
+    }
+
+    // Token-based file splitting
+    const charsPerToken = this.options.charsPerToken || DEFAULT_CHARS_PER_TOKEN;
+    const maxTokensPerFile = this.options.maxTokensPerFile || DEFAULT_MAX_TOKENS_PER_FILE;
+    const maxCharsPerFile = maxTokensPerFile * charsPerToken;
+
+    // Calculate the estimated token count
+    const contentLength = Buffer.from(this.compressedContent).length;
+    const estimatedTokens = Math.ceil(contentLength / charsPerToken);
+
+    console.log(`Estimated ${estimatedTokens} tokens, max tokens per file: ${maxTokensPerFile}, max chars per file: ${maxCharsPerFile}`);
+    
+    // For proper file splitting, we need to respect the maxTokensPerFile parameter
+    const shouldSplit = this.options.splitByTokens && (estimatedTokens > maxTokensPerFile);
+    
+    if (!shouldSplit) {
+      console.log("No need to split - file is small enough");
+      writeFile(outputPath, this.compressedContent);
+      return outputPath;
+    }
+
+    // Split the content into multiple files
+    const fileCount = Math.ceil(estimatedTokens / maxTokensPerFile);
+    console.log(`Content exceeds ${maxTokensPerFile} tokens (est. ${estimatedTokens}). Splitting into ${fileCount} files.`);
+
+    // Add a header to each split indicating it's part of a multi-file compression
+    const multiFileHeader = `<UTCP-SPLIT-FILE>\n<TOTAL-FILES>${fileCount}</TOTAL-FILES>\n`;
+    
+    // Calculate how to split the content
+    const splitFiles: string[] = [];
+    
+    for (let i = 0; i < fileCount; i++) {
+      const start = i * maxCharsPerFile;
+      const end = Math.min(start + maxCharsPerFile, contentLength);
+      const splitContent = this.compressedContent.substring(start, end);
+      
+      // Generate filename with simplified part number pattern
+      const splitPath = `${this.filePath}.part${i + 1}.utcp`;
+      
+      // Create file header with split information
+      const fileHeader = `${multiFileHeader}<PART>${i + 1}</PART>\n<TOTAL-PARTS>${fileCount}</TOTAL-PARTS>\n<OFFSET>${start}</OFFSET>\n`;
+      
+      // Write the split file with header
+      writeFile(splitPath, fileHeader + splitContent);
+      splitFiles.push(splitPath);
+    }
+    
+    // Create an index file listing all parts
+    const indexContent = `<UTCP-SPLIT-INDEX>\n<TOTAL-FILES>${fileCount}</TOTAL-FILES>\n` +
+      `<ORIGINAL-FILENAME>${path.basename(this.filePath)}</ORIGINAL-FILENAME>\n` +
+      `<TOTAL-SIZE>${contentLength}</TOTAL-SIZE>\n` +
+      `<ESTIMATED-TOKENS>${estimatedTokens}</ESTIMATED-TOKENS>\n` +
+      `<PARTS>\n${splitFiles.map(f => path.basename(f)).join('\n')}\n</PARTS>\n` +
+      `</UTCP-SPLIT-INDEX>`;
+    
+    writeFile(outputPath, indexContent);
+    
+    // Return all paths (index file first)
+    return [outputPath, ...splitFiles];
   }
 
   /**
-   * Build global dictionary of common terms
+   * Merge pattern maps from parallel processing
+   * @param patternMaps Array of pattern maps to merge
+   * @returns Merged map with combined frequencies
    */
-private buildGlobalDictionary(): void {
-// We'll build dictionaries for any non-trivial content
-// The threshold check is now only in compress() method
+  private mergePatternMaps(patternMaps: Map<string, number>[]): Map<string, number> {
+    const mergedMap = new Map<string, number>();
+    
+    for (const map of patternMaps) {
+      for (const [pattern, count] of map.entries()) {
+        mergedMap.set(pattern, (mergedMap.get(pattern) || 0) + count);
+      }
+    }
+    
+    return mergedMap;
+  }
 
-// First pass - identify complete function patterns for better LLM token compression
-const functionRegex = /(function\s+\w+\s*\([^)]*\)\s*{[^{}]*(?:{[^{}]*}[^{}]*)*})/gs;
-const functionCounts = new Map<string, number>();
-let functionMatch;
-while ((functionMatch = functionRegex.exec(this.content)) !== null) {
-    const functionBody = functionMatch[1];
-    if (functionBody.length < 20) continue; // Skip very short functions
-    const count = functionCounts.get(functionBody) || 0;
-    functionCounts.set(functionBody, count + 1);
-}
+  /**
+   * Build global dictionary using parallel processing if enabled and content size exceeds threshold
+   */
+  private async buildGlobalDictionaryParallel(): Promise<void> {
+    const originalSize = Buffer.from(this.content).length;
+    const threshold = this.options.parallelThreshold || DEFAULT_PARALLEL_THRESHOLD;
+    
+    // Only use parallel processing for large files if enabled
+    if (!this.options.useParallel || originalSize < threshold) {
+      this.buildGlobalDictionary();
+      return;
+    }
+    
+    try {
+      console.log(`Using parallel processing for file of size ${originalSize} bytes`);
+      
+      // Determine chunk count based on file size and CPU cores
+      const chunkCount = DEFAULT_CHUNK_COUNT;
+      const chunkSize = Math.ceil(this.content.length / chunkCount);
+      
+      // Split content into chunks
+      const chunks: string[] = [];
+      for (let i = 0; i < chunkCount; i++) {
+        const start = i * chunkSize;
+        const end = Math.min(start + chunkSize, this.content.length);
+        chunks.push(this.content.substring(start, end));
+      }
+      
+      // Process function patterns sequentially (these might span chunk boundaries)
+      const functionRegex = /(function\s+\w+\s*\([^)]*\)\s*{[^{}]*(?:{[^{}]*}[^{}]*)*})/gs;
+      const functionCounts = new Map<string, number>();
+      let functionMatch;
+      while ((functionMatch = functionRegex.exec(this.content)) !== null) {
+        const functionBody = functionMatch[1];
+        if (functionBody.length < 20) continue; // Skip very short functions
+        functionCounts.set(functionBody, (functionCounts.get(functionBody) || 0) + 1);
+      }
+      
+      // Process chunks in parallel
+      const chunkResults = await Promise.all(
+        chunks.map(chunk => {
+          return new Promise<Map<string, number>>((resolve) => {
+            resolve(UTCPCompressor.processChunk(chunk, MIN_TERM_LENGTH));
+          });
+        })
+      );
+      
+      // Merge results from all chunks
+      const mergedPatterns = this.mergePatternMaps(chunkResults);
+      
+      // Combine with function patterns and create dictionary
+      const allPatterns = [
+        ...Array.from(functionCounts.entries()),
+        ...Array.from(mergedPatterns.entries())
+      ]
+        .filter(([word, count]) => count >= this.minOccurrences)
+        .sort((a, b) => {
+          // For token efficiency, prioritize by (length * frequency)
+          const tokenSavingA = a[0].length * a[1];
+          const tokenSavingB = b[0].length * b[1];
+          return tokenSavingB - tokenSavingA;
+        })
+        .map(([word]) => word);
+      
+      // Create global dictionary with prioritized patterns
+      let dictIndex = 1;
+      for (const pattern of allPatterns) {
+        const code = `$G${dictIndex}`;
+        this.dictionaries.global[code] = pattern;
+        dictIndex++;
+      }
+    } catch (error) {
+      console.warn(`Error in parallel processing: ${error}. Falling back to sequential processing.`);
+      this.buildGlobalDictionary();
+    }
+  }
 
-// Second pass - identify variable names and custom identifiers
-const identifierRegex = /\b(?!(?:function|class|const|let|var)\b)([a-zA-Z_$][a-zA-Z0-9_$]*)\b/g;
-const identifierCounts = new Map<string, number>();
-let match;
-while ((match = identifierRegex.exec(this.content)) !== null) {
-    const identifier = match[1];
-    if (identifier.length < MIN_TERM_LENGTH) continue; // Focus on longer identifiers for better token efficiency
-    const count = identifierCounts.get(identifier) || 0;
-    identifierCounts.set(identifier, count + 1);
-}
+  /**
+   * Build global dictionary of common terms (sequential implementation)
+   */
+  private buildGlobalDictionary(): void {
+    // First pass - identify complete function patterns for better LLM token compression
+    const functionRegex = /(function\s+\w+\s*\([^)]*\)\s*{[^{}]*(?:{[^{}]*}[^{}]*)*})/gs;
+    const functionCounts = new Map<string, number>();
+    let functionMatch;
+    while ((functionMatch = functionRegex.exec(this.content)) !== null) {
+      const functionBody = functionMatch[1];
+      if (functionBody.length < 20) continue; // Skip very short functions
+      const count = functionCounts.get(functionBody) || 0;
+      functionCounts.set(functionBody, count + 1);
+    }
 
-// Third pass - standard words
-const wordRegex = /\b(\w+)\b/g;
-const wordCounts = new Map<string, number>();
-let wordMatch;
-while ((wordMatch = wordRegex.exec(this.content)) !== null) {
-    const word = wordMatch[1];
-    if (word.length < MIN_TERM_LENGTH) continue; // Focus on longer words
-    if (identifierCounts.has(word)) continue; // Skip identified variables
-    const count = wordCounts.get(word) || 0;
-    wordCounts.set(word, count + 1);
-}
+    // Second pass - identify variable names and custom identifiers
+    const identifierRegex = /\b(?!(?:function|class|const|let|var)\b)([a-zA-Z_$][a-zA-Z0-9_$]*)\b/g;
+    const identifierCounts = new Map<string, number>();
+    let match;
+    while ((match = identifierRegex.exec(this.content)) !== null) {
+      const identifier = match[1];
+      if (identifier.length < MIN_TERM_LENGTH) continue; // Focus on longer identifiers for better token efficiency
+      const count = identifierCounts.get(identifier) || 0;
+      identifierCounts.set(identifier, count + 1);
+    }
 
-// Combine and sort all patterns by frequency and length
-// Add function patterns first as they compress best for LLMs
-const allPatterns = [
-    ...Array.from(functionCounts.entries()),
-    ...Array.from(identifierCounts.entries()),
-    ...Array.from(wordCounts.entries())
-]
-    .filter(([word, count]) => count >= this.minOccurrences)
-    .sort((a, b) => {
-    // For token efficiency, prioritize by (length * frequency) - this optimizes token saving
-    const tokenSavingA = a[0].length * a[1];
-    const tokenSavingB = b[0].length * b[1];
-    return tokenSavingB - tokenSavingA;
-    })
-    .map(([word]) => word);
+    // Third pass - standard words
+    const wordRegex = /\b(\w+)\b/g;
+    const wordCounts = new Map<string, number>();
+    let wordMatch;
+    while ((wordMatch = wordRegex.exec(this.content)) !== null) {
+      const word = wordMatch[1];
+      if (word.length < MIN_TERM_LENGTH) continue; // Focus on longer words
+      if (identifierCounts.has(word)) continue; // Skip identified variables
+      const count = wordCounts.get(word) || 0;
+      wordCounts.set(word, count + 1);
+    }
 
-// Create global dictionary with prioritized patterns
-let dictIndex = 1;
-for (const pattern of allPatterns) {
-    const code = `$G${dictIndex}`;
-    this.dictionaries.global[code] = pattern;
-    dictIndex++;
-}
-}
+    // Combine and sort all patterns by frequency and length
+    // Add function patterns first as they compress best for LLMs
+    const allPatterns = [
+      ...Array.from(functionCounts.entries()),
+      ...Array.from(identifierCounts.entries()),
+      ...Array.from(wordCounts.entries())
+    ]
+      .filter(([word, count]) => count >= this.minOccurrences)
+      .sort((a, b) => {
+        // For token efficiency, prioritize by (length * frequency) - this optimizes token saving
+        const tokenSavingA = a[0].length * a[1];
+        const tokenSavingB = b[0].length * b[1];
+        return tokenSavingB - tokenSavingA;
+      })
+      .map(([word]) => word);
+
+    // Create global dictionary with prioritized patterns
+    let dictIndex = 1;
+    for (const pattern of allPatterns) {
+      const code = `$G${dictIndex}`;
+      this.dictionaries.global[code] = pattern;
+      dictIndex++;
+    }
+  }
 
   /**
    * Build domain-specific dictionaries

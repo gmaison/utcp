@@ -4,7 +4,7 @@ import { CompressionOptions, CompressionResult, DecompressionOptions, Decompress
 /**
  * Compress a file using UTCP
  */
-export declare function compressFile(filePath: string, options?: CompressionOptions): string;
+export declare function compressFile(filePath: string, options?: CompressionOptions): Promise<string | string[]>;
 /**
  * Decompress a UTCP file
  */
@@ -12,7 +12,7 @@ export declare function decompressFile(filePath: string, options?: Decompression
 /**
  * Compress a string using UTCP
  */
-export declare function compressString(content: string, virtualFilename?: string, options?: CompressionOptions): CompressionResult;
+export declare function compressString(content: string, virtualFilename?: string, options?: CompressionOptions): Promise<CompressionResult>;
 /**
  * Decompress a UTCP string
  */

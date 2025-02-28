@@ -21,6 +21,11 @@ export interface References {
 export interface CompressionOptions {
     minOccurrences?: number;
     preserveVerbatim?: boolean;
+    useParallel?: boolean;
+    parallelThreshold?: number;
+    splitByTokens?: boolean;
+    maxTokensPerFile?: number;
+    charsPerToken?: number;
 }
 export interface DecompressionOptions {
     outputFilename?: string;
@@ -31,6 +36,7 @@ export interface CompressionResult {
     dictionaries: Dictionaries;
     references: References;
     compressionRatio: number;
+    splitFiles?: string[];
 }
 export interface DecompressionResult {
     originalContent: string;

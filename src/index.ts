@@ -13,19 +13,26 @@ import { readFile, writeFile } from './utils';
 /**
  * Compress a file using UTCP
  */
-export function compressFile(
+export async function compressFile(
   filePath: string,
   options: CompressionOptions = {}
-): string {
+): Promise<string | string[]> {
   // Read the input file
   const content = readFile(filePath);
   
   // Create compressor and compress
   const compressor = new UTCPCompressor(filePath, content, options);
-  compressor.compress();
+  const result = await compressor.compress();
   
-  // Save the compressed file
-  return compressor.save();
+  // Save the compressed file (may return multiple paths if split by tokens)
+  const savedPaths = compressor.save();
+  
+  // Store split file paths in the result if token-based splitting was used
+  if (Array.isArray(savedPaths) && savedPaths.length > 1) {
+    result.splitFiles = savedPaths;
+  }
+  
+  return savedPaths;
 }
 
 /**
@@ -53,13 +60,13 @@ export function decompressFile(
 /**
  * Compress a string using UTCP
  */
-export function compressString(
+export async function compressString(
   content: string,
   virtualFilename: string = 'content.txt',
   options: CompressionOptions = {}
-): CompressionResult {
+): Promise<CompressionResult> {
   const compressor = new UTCPCompressor(virtualFilename, content, options);
-  return compressor.compress();
+  return await compressor.compress();
 }
 
 /**

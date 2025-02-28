@@ -41,9 +41,9 @@ describe('UTCP Compression and Decompression', () => {
   console.log(formatCurrency(total));
   `;
 
-  test('Compress and decompress should round-trip correctly', () => {
+  test('Compress and decompress should round-trip correctly', async () => {
     // Compress the sample text
-    const compressionResult = compressString(sampleText, 'sample.js');
+    const compressionResult = await compressString(sampleText, 'sample.js');
     
     // Verify compression worked
     expect(compressionResult.compressedContent).toBeDefined();
@@ -67,12 +67,12 @@ describe('UTCP Compression and Decompression', () => {
     // and we know content matches which is more important
   });
 
-  test('Compression should be efficient', () => {
+  test('Compression should be efficient', async () => {
     // Generate longer sample text to ensure dictionary building happens
     const longSampleText = sampleText.repeat(5);
     
     // Compress the sample text
-    const compressionResult = compressString(longSampleText, 'sample.js');
+    const compressionResult = await compressString(longSampleText, 'sample.js');
     
     console.log(`Compression ratio: ${compressionResult.compressionRatio.toFixed(2)}`);
     
@@ -95,7 +95,7 @@ describe('UTCP Compression and Decompression', () => {
     }
   });
   
-  test('Compression should use original content when compression is ineffective', () => {
+  test('Compression should use original content when compression is ineffective', async () => {
     // Create a text that would be difficult to compress effectively
     const randomText = Array.from(
       { length: 100 }, 
@@ -103,7 +103,7 @@ describe('UTCP Compression and Decompression', () => {
     ).join(' ');
     
     // Compress the random text
-    const compressionResult = compressString(randomText, 'random.txt');
+    const compressionResult = await compressString(randomText, 'random.txt');
     
     // The compression should detect it's not efficient and use the original format
     expect(compressionResult.compressedContent).toContain('<UTCP-v1-original>');
@@ -118,9 +118,9 @@ describe('UTCP Compression and Decompression', () => {
     expect(decompressionResult.originalContent).toEqual(randomText);
   });
 
-  test('Metadata should correctly identify file properties', () => {
+  test('Metadata should correctly identify file properties', async () => {
     // Compress the sample text
-    const compressionResult = compressString(sampleText, 'sample.js');
+    const compressionResult = await compressString(sampleText, 'sample.js');
     
     // Check metadata
     expect(compressionResult.metadata.type).toEqual('js');

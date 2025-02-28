@@ -10,15 +10,33 @@ export declare class UTCPCompressor {
     private minOccurrences;
     constructor(filePath: string, content: string, options?: CompressionOptions);
     /**
+     * Process a chunk of text in parallel to find patterns
+     * @param chunk Text chunk to process
+     * @param minLength Minimum pattern length
+     * @returns Map of patterns and their frequencies
+     */
+    private static processChunk;
+    /**
      * Compress the content using UTCP
      */
-    compress(): CompressionResult;
+    compress(): Promise<CompressionResult>;
     /**
      * Save the compressed content to a file
+     * If token-based splitting is enabled, will create multiple files for large content
      */
-    save(): string;
+    save(): string | string[];
     /**
-     * Build global dictionary of common terms
+     * Merge pattern maps from parallel processing
+     * @param patternMaps Array of pattern maps to merge
+     * @returns Merged map with combined frequencies
+     */
+    private mergePatternMaps;
+    /**
+     * Build global dictionary using parallel processing if enabled and content size exceeds threshold
+     */
+    private buildGlobalDictionaryParallel;
+    /**
+     * Build global dictionary of common terms (sequential implementation)
      */
     private buildGlobalDictionary;
     /**

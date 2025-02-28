@@ -1,4 +1,5 @@
 import * as path from 'path';
+import * as fs from 'fs';
 import {
   DecompressionOptions,
   DecompressionResult,
@@ -35,8 +36,15 @@ export class UTCPDecompressor {
 
   /**
    * Decompress the UTCP content
+   * Also handles split files by checking if this is an index file
    */
   public decompress(): DecompressionResult {
+    // Check if this is a split index file
+    if (this.content.startsWith('<UTCP-SPLIT-INDEX>')) {
+      return this.decompressSplitFile();
+    }
+    
+    // Standard single-file decompression
     // 1. Parse UTCP format
     this.parseUTCPFormat();
     
@@ -65,6 +73,72 @@ export class UTCPDecompressor {
       verified: isVerified,
       outputPath,
     };
+  }
+  
+  /**
+   * Decompress a split file by reading all parts and combining them
+   */
+  private decompressSplitFile(): DecompressionResult {
+    console.log('Detected split file index. Reading and combining parts...');
+    
+    // Extract information from the index file
+    const totalFilesMatch = this.content.match(/<TOTAL-FILES>(\d+)<\/TOTAL-FILES>/);
+    const originalFilenameMatch = this.content.match(/<ORIGINAL-FILENAME>(.+?)<\/ORIGINAL-FILENAME>/);
+    const partsMatch = this.content.match(/<PARTS>\s*([\s\S]*?)\s*<\/PARTS>/);
+    
+    if (!totalFilesMatch || !originalFilenameMatch || !partsMatch) {
+      throw new Error('Invalid split file index format');
+    }
+    
+    const totalFiles = parseInt(totalFilesMatch[1], 10);
+    const originalFilename = originalFilenameMatch[1];
+    const parts = partsMatch[1].trim().split('\n');
+    
+    if (parts.length !== totalFiles) {
+      throw new Error(`Split file index indicates ${totalFiles} parts but found ${parts.length}`);
+    }
+    
+    // Read all part files
+    let combinedContent = '';
+    const baseDir = path.dirname(this.filePath);
+    
+    for (const partFilename of parts) {
+      const partPath = path.join(baseDir, partFilename);
+      console.log(`Reading part file: ${partPath}`);
+      
+      if (!fs.existsSync(partPath)) {
+        throw new Error(`Part file not found: ${partPath}`);
+      }
+      
+      // Read the part file
+      const partContent = fs.readFileSync(partPath, 'utf-8');
+      
+      // Remove the split file header
+      const contentMatch = partContent.match(/<OFFSET>\d+<\/OFFSET>\s*([\s\S]*)/);
+      if (!contentMatch) {
+        throw new Error(`Invalid part file format: ${partPath}`);
+      }
+      
+      // Append to the combined content
+      combinedContent += contentMatch[1];
+    }
+    
+    // Create a new decompressor with the combined content
+    const tempCombinedName = `${originalFilename}.combined.utcp`;
+    const newFilePath = path.join(baseDir, tempCombinedName);
+    fs.writeFileSync(newFilePath, combinedContent, 'utf-8');
+    
+    const decompressor = new UTCPDecompressor(newFilePath, combinedContent, this.options);
+    const result = decompressor.decompress();
+    
+    // Clean up the temporary combined file
+    try {
+      fs.unlinkSync(newFilePath);
+    } catch (e) {
+      console.warn(`Warning: Could not delete temporary file ${newFilePath}`);
+    }
+    
+    return result;
   }
 
   /**
@@ -150,8 +224,9 @@ export class UTCPDecompressor {
         date: dateMatch[1],
       };
       
-      // Setup decompressed content directly
-      this.decompressedContent = contentMatch[1];
+      // Setup decompressed content directly - trim any FORMAT-DESCRIPTION text that might have been included
+      const rawContent = contentMatch[1];
+      this.decompressedContent = rawContent.replace(/^[\s\S]*?tags\.\s*<\/FORMAT-DESCRIPTION>\s*<META[\s\S]*?<CONTENT>\s*/m, '');
     } else if (this.content.startsWith('<UTCP>')) {
       // Minimal wrapper format for LLM token efficiency
       // Extract content between UTCP tags

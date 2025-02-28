@@ -1,7 +1,7 @@
 import { compressString, decompressString } from '../index';
 
 describe('UTCP Classic Literature Compression', () => {
-  test('Should efficiently compress and decompress literary text', () => {
+  test('Should efficiently compress and decompress literary text', async () => {
     // Text from Pride and Prejudice by Jane Austen (public domain)
     // First few paragraphs of the novel - approximately 50k characters
     const classicText = `
@@ -141,7 +141,7 @@ Not all that Mrs. Bennet, however, with the assistance of her five daughters, co
     console.log(`Literary text length: ${trimmedText.length} characters`);
     
     // Compress the classic text
-    const compressionResult = compressString(trimmedText, 'pride-and-prejudice.txt');
+    const compressionResult = await compressString(trimmedText, 'pride-and-prejudice.txt');
     
     // Check compression metrics 
     console.log(`Compression ratio: ${compressionResult.compressionRatio.toFixed(2)}`);

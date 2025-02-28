@@ -11,8 +11,13 @@ export declare class UTCPDecompressor {
     constructor(filePath: string, content: string, options?: DecompressionOptions);
     /**
      * Decompress the UTCP content
+     * Also handles split files by checking if this is an index file
      */
     decompress(): DecompressionResult;
+    /**
+     * Decompress a split file by reading all parts and combining them
+     */
+    private decompressSplitFile;
     /**
      * Save the decompressed content to a file
      */
